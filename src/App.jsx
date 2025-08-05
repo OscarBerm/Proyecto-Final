@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductRegister from './pages/ProductRegister/ProductRegister';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<Product />} /> */}
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
