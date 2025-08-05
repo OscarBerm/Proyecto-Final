@@ -1,1 +1,0 @@
-export const data = 'http://localhost:5000/api/';
