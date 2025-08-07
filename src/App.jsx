@@ -1,9 +1,10 @@
 import './App.css'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home';
 import Products from './pages/Products';
-import ProductRegister from './pages/ProductRegister/ProductRegister';
-import NotFound from './pages/NotFound/NotFound';
+import ProductRegister from './pages/ProductRegister/ProductRegister'
+import NotFound from './pages/NotFound/NotFound'
+import Profile from './components/Profile/Profile'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<Product />} /> */}
+        <Route path='/Profile' element={<Profile />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
