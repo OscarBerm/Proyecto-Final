@@ -1,0 +1,93 @@
+.navbar-cafe {
+	background: #fff8f0;
+	padding: 1.2rem 0;
+	border-bottom: 2px solid #e0c9a6;
+}
+.navbar-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 1200px;
+	margin: 0 auto;
+	gap: 2rem;
+}
+.navbar-left {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+.navbar-logo {
+	width: 130px;
+	height: 60px;
+	object-fit: cover;
+}
+.navbar-brand {
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: #6c4f37;
+}
+.navbar-links {
+	display: flex;
+	gap: 2rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.navbar-links a {
+	color: #6c4f37;
+	font-weight: 500;
+	text-decoration: none;
+	font-size: 1.05rem;
+	transition: color 0.2s;
+}
+.navbar-links a:hover {
+	color: #A9855C;
+}
+.navbar-actions {
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+}
+.btn-login {
+	background: #A9855C;
+	color: #fff;
+	min-width: 110px;
+	border: none;
+	padding: 0.5rem 1.2rem;
+	border-radius: 0.5rem;
+	font-weight: 500;
+	transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-login:hover {
+	background: #8a6a4a;
+	box-shadow: 0 2px 8px rgba(169,133,92,0.15);
+}
+.btn-register {
+	background: #A9855C;
+	color: #fff;
+	min-width: 140px;
+	border: none;
+	padding: 0.5rem 1.5rem;
+	border-radius: 0.5rem;
+	font-weight: 500;
+	transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-register:hover {
+	background: #8a6a4a;
+	box-shadow: 0 2px 8px rgba(169,133,92,0.15);
+}
+.btn-cart {
+	background: #fff8f0;
+	border: none;
+	padding: 0.3rem 0.7rem;
+	border-radius: 50%;
+	transition: box-shadow 0.2s, background 0.2s;
+}
+.btn-cart i {
+	font-size: 2.1rem;
+	color: #A9855C;
+}
+.btn-cart:hover {
+	background: #e0c9a6;
+	box-shadow: 0 2px 8px rgba(169,133,92,0.15);
+}

@@ -1,0 +1,39 @@
+/* Sección de descripción */
+.descripcion-section {
+	padding: 3rem 0 2rem 0;
+	background: #fff8f0;
+}
+
+.descripcion-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 3rem;
+	flex-wrap: wrap;
+}
+
+.descripcion-text {
+	max-width: 420px;
+}
+
+.descripcion-text h2 {
+	font-size: 2rem;
+	color: #6c4f37;
+	margin-bottom: 1rem;
+	font-weight: 700;
+}
+
+.descripcion-text p {
+	font-size: 1.2rem;
+	color: #444;
+	line-height: 1.7;
+}
+
+.descripcion-logo img {
+	width: 300px;
+	height: auto;
+	border-radius: 1rem;
+	box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+	background: #fff;
+	padding: 0.5rem;
+}

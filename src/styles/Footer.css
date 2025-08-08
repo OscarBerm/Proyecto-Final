@@ -1,0 +1,75 @@
+
+.footer-cafe {
+	background: linear-gradient(90deg, #9c9081 0%, #A9855C 100%);
+	padding: 2.5rem 0 1.2rem 0;
+	color: #6c4f37;
+	font-family: inherit;
+	border-top: 2px solid #e0c9a6;
+}
+
+.footer-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	max-width: 1200px;
+	margin: 0 auto;
+	gap: 2rem;
+}
+
+.footer-left {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+.footer-logo {
+	width: 170px;
+	height: 70px;
+	object-fit: cover;
+    background-color: #ffffff;
+}
+.footer-brand {
+	font-size: 1.3rem;
+	font-weight: 700;
+	color: #6c4f37;
+}
+
+.footer-links {
+	display: flex;
+	gap: 2rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.footer-links a {
+	color: #ffffff;
+	font-weight: 500;
+	text-decoration: none;
+	font-size: 1.05rem;
+	transition: color 0.2s;
+}
+.footer-links a:hover {
+	color: #5e4c37;
+}
+
+.footer-social {
+	display: flex;
+	gap: 1.2rem;
+}
+.footer-icon {
+	color: #ffffff;
+	font-size: 2rem;
+	transition: color 0.2s, transform 0.2s;
+}
+.footer-icon:hover {
+	color: #6c4f37;
+	transform: scale(1.15);
+}
+
+.footer-copy {
+	text-align: center;
+	color: #ffffff;
+	font-size: 0.98rem;
+	margin-top: 1.5rem;
+	opacity: 0.8;
+}

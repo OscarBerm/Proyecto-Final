@@ -1,0 +1,45 @@
+/* Hero seccion */
+.hero-section {
+	background-image: url('public/img/Imagen_Principal.png');
+	background-size: cover;
+	background-position: center;
+	min-height: 60vh;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	position: relative;
+	padding-left: 5vw;
+}
+
+.hero-content {
+	padding: 2rem 3rem;
+	text-align: left;
+	max-width: 500px;
+}
+
+.hero-content h1 {
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+	color: #fff;
+}
+.hero-content p {
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+	color: #fff;
+}
+.hero-content .btn-primary {
+	background-color: #A9855C;
+	color: #fff;
+	font-size: 1.08rem;
+	font-weight: 600;
+	padding: 0.7rem 2.2rem;
+	border-radius: 0.7rem;
+	box-shadow: 0 2px 8px rgba(169,133,92,0.10);
+	transition: background 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+.hero-content .btn-primary:hover {
+	background-color: #8a6a4a;
+	border-color: #8a6a4a;
+}
+
