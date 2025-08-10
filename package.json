@@ -14,7 +14,10 @@
     "bootstrap-icons": "^1.13.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-router-dom": "^7.7.1"
+    "react-bootstrap": "^2.10.9",
+    "react-router-dom": "^7.7.1",
+    "uuid": "^11.1.0",
+    "sweetalert2": "^11.17.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
