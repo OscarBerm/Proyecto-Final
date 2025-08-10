@@ -1,0 +1,16 @@
+:root {
+    --fuente-titulos: sans-serif;
+    --fuente-textos: serif;
+    --color-primario: ;
+    --color-secundario: ;
+}
+
+
+body {
+    font-family: var(--fuente-textos);
+}
+
+.card-title, h1,h2,h3,h4,h5,h6 {
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+}

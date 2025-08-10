@@ -1,10 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { UserContext } from "../context/UserContext";
+import '../assets/css/formularios.css';
 
 const Register = () => {
 
+  const { registrarUsuario } = useContext(UserContext);
+  
   const [formulario, setFormulario] = useState({
     nombre: "",
     apellido: "",
@@ -16,38 +19,85 @@ const Register = () => {
     imagen: "",
     rol: "",
   });
-  const {registrarUsuario} = useContext(UserContext);
 
   const [showPass, setShowPass] = useState(false);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState({ campos: false, pass: false, passLength:false});
+
+  const validaForm = () => {
+    const {
+      nombre,
+      apellido,
+      email,
+      password,
+      direccion,
+      telefono,
+      imagen,
+      rol,
+    } = formulario;
+
+    const camposVacio =
+      !nombre.trim() ||
+      !apellido.trim() ||
+      !email.trim() ||
+      !password.trim() ||
+      !direccion.trim() ||
+      !telefono.trim() ||
+      !imagen.trim() ||
+      !rol.trim();
+
+      const pass = password !== formulario.password2;
+
+      const passLength = formulario.password.length > 0 && formulario.password.length < 6; 
+    setError({ campos: camposVacio, pass: pass, passLength : passLength });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const {nombre,apellido,email,password,direccion,telefono, imagen,rol} = formulario;
-
-    if (!nombre.trim() || !apellido.trim() || !email.trim() || !password.trim() || !direccion.trim() || !telefono.trim() || !imagen.trim() || !rol.trim()) {
-            Swal.fire('Error', 'Todos los campos deben estar llenos.', 'error')
-            // console.log(nombre,apellido,email,password,direccion,telefono, imagen,rol)
-            return
-        }
-    if (password !== formulario.password2){
-        Swal.fire('Error', 'Las contraseñas no coinciden.', 'error')
-        return
+    if (error.campo) {
+      Swal.fire("Alerta", "Debe llenar todos los campos", "error");
+      return;
     }
-    registrarUsuario(nombre,apellido,email,password,direccion,telefono, imagen,rol);
-    
-  };
+    if (error.pass) {
+      Swal.fire("Alerta", "Las contraseñas deben ser iguales", "error");
+      return;
+    }
 
+    const {
+      nombre,
+      apellido,
+      email,
+      password,
+      direccion,
+      telefono,
+      imagen,
+      rol,
+    } = formulario;
+
+    registrarUsuario(
+      nombre,
+      apellido,
+      email,
+      password,
+      direccion,
+      telefono,
+      imagen,
+      rol
+    );
+  };
 
   const handleChange = (e) => {
     setFormulario({ ...formulario, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    validaForm();
+  }, [formulario]);
+
   return (
     <div className="container my-5">
       <section className="card p-4 shadow-sm mb-5">
         <h2 className="card-title text-center mb-4">
-          Formulario de Creación de Productos
+          Registro de usuario
         </h2>
 
         <form onSubmit={handleSubmit}>
@@ -75,7 +125,7 @@ const Register = () => {
                 required
                 onChange={handleChange}
                 className="form-control"
-             />
+              />
             </div>
           </div>
 
@@ -158,8 +208,13 @@ const Register = () => {
                 value={formulario.password}
                 required
                 onChange={handleChange}
-                className="form-control"
+                className={`form-control ${error.passLength && "is-invalid"}`}
               />
+              {error.passLength && (
+                <div className="invalid-feedback">
+                  La contraseña debe ser igual o mayor a 6 caracteres
+                </div>
+              )}
             </div>
 
             <div className="col-md-6">
@@ -171,13 +226,9 @@ const Register = () => {
                 value={formulario.password2}
                 required
                 onChange={handleChange}
-                className={`form-control ${
-                  formulario.password !== formulario.password2
-                    ? "is-invalid"
-                    : ""
-                }`}
+                className={`form-control ${error.pass ? "is-invalid" : ""}`}
               />
-              {formulario.password !== formulario.password2 && (
+              {error.pass && (
                 <div className="invalid-feedback">
                   Las contraseñas no coinciden
                 </div>
@@ -199,11 +250,23 @@ const Register = () => {
           </div>
 
           <div className="text-center">
-            <button type="submit" className="btn btn-dark">
+            <button
+              type="submit"
+              className="btn btn-dark"
+              disabled={error.campos || error.pass}
+            >
               Registrarse
             </button>
+            {(error.pass || error.campos) && (
+              <div
+                className="text-danger small mt-1"
+                style={{ fontSize: "0.8rem" }}
+              >
+                <i className="bi bi-exclamation-circle me-1"></i>
+                Complete todos los campos correctamente
+              </div>
+            )}
           </div>
-          
         </form>
       </section>
     </div>
