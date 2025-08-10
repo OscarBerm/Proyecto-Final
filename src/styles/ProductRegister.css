@@ -1,0 +1,114 @@
+body {
+    background-color: #F8F0E5; 
+    font-family: 'Arial', sans-serif;
+    color: #333333; 
+}
+
+
+.container {
+    max-width: 1000px;
+}
+
+
+.card-title {
+    color: #4F463B; 
+    font-weight: 600;
+}
+
+
+.form-label {
+    font-weight: 500;
+    color: #4F463B; 
+}
+
+
+.form-control,
+.form-select {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    color: #333333;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #DDA15E; 
+    box-shadow: 0 0 0 0.25rem rgba(221, 161, 94, 0.25); 
+}
+
+
+.btn-dark {
+    background-color: #4F463B; 
+    border-color: #4F463B;
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.btn-dark:hover {
+    background-color: #6D5F4D; 
+    border-color: #6D5F4D;
+    transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+    border-color: #CCCCCC;
+    color: #4F463B;
+    background-color: transparent;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #EFEFEF;
+    color: #4F463B;
+    border-color: #4F463B;
+}
+
+
+.table {
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #CCCCCC;
+}
+
+.table thead tr {
+    background-color: #F8F0E5; 
+    color: #4F463B;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #F9F9F9; 
+}
+
+
+.btn-warning {
+    background-color: #DDA15E; 
+    border-color: #DDA15E;
+    color: #FFFFFF;
+}
+
+.btn-warning:hover {
+    background-color: #c78d50;
+    border-color: #c78d50;
+}
+
+.btn-danger {
+    background-color: #B00020; 
+    border-color: #B00020;
+    color: #FFFFFF;
+}
+
+.btn-danger:hover {
+    background-color: #900018;
+    border-color: #900018;
+}
+
+
+.alert-danger {
+    background-color: #FEEEEE;
+    color: #D20000;
+    border-color: #FEEEEE;
+}

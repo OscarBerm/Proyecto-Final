@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import '../styles/Footer.css';
 
 const Footer = () => {
@@ -9,9 +9,9 @@ const Footer = () => {
 					<img src="public/img/Cafe y Cuento (logo sin fondo).png" alt="Logo" className="footer-logo" />
 				</div>
 				<ul className="footer-links">
-					<li><a href="#perfil">Mi Perfil</a></li>
-					<li><a href="#productos">Productos</a></li>
-					<li><a href="#contacto">Contáctanos</a></li>
+					<li><Link to="/">Mi Perfil</Link></li>
+					<li><Link to="/productos">Nuestros Productos</Link></li>
+					<li><Link to="/contacto">Contáctanos</Link></li>
 				</ul>
 				<div className="footer-social">
 					<a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-icon"><i className="bi bi-facebook"></i></a>

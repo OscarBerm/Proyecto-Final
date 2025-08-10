@@ -1,0 +1,54 @@
+body {
+  background-color: #fff8f0;
+  font-family: Arial, sans-serif;
+  color: #6c4f37;
+}
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.error-code {
+  font-size: 150px;
+  font-weight: bold;
+  color: #A9855C;
+  text-shadow: 4px 4px 0 #E0C9a6;
+}
+
+.error-title {
+  font-size: 2.5rem;
+  color: #6c4f37;
+  margin-top: 1rem;
+}
+
+.error-message {
+  font-size: 1.2rem;
+  color: #8A6A4A;
+  margin-top: 1rem;
+}
+
+.home-link {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 10px 20px;
+  background-color: #6c4f37;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.home-link:hover {
+  background-color: #8A6A4A;
+}
+
+.error-image {
+  margin-top: 3rem;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

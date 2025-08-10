@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import '../styles/Navbar.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -11,9 +11,9 @@ const Navbar = () => {
 					<span className="navbar-brand">Café y Cuento</span>
 				</div>
 				<ul className="navbar-links">
-					<li><a href="#inicio">Inicio</a></li>
-					<li><a href="#productos">Productos</a></li>
-					<li><a href="#contacto">Contáctanos</a></li>
+					<li><Link to="/">Inicio</Link></li>
+					<li><Link to="/products">Nuestros Productos</Link></li>
+					<li><Link to="/contacto">Contáctanos</Link></li>
 				</ul>
 				<div className="navbar-actions">
 					<button className="btn-login">Iniciar sesión</button>

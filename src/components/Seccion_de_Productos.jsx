@@ -1,45 +1,25 @@
 import React from "react";
 import '../styles/Seccion_de_Productos.css';
+import { products } from '../data/data.js';
+import { Link } from "react-router-dom";
 
-const productos = [
-	{
-		nombre: "Café Colombia",
-		descripcion: "Cafe en grano con Aroma intenso y sabor suave.",
-		imagen: "public/img/Card-Cafe-en-Grano.png",
-		precio: "$6.990"
-	},
-	{
-		nombre: "Café Brasil",
-		descripcion: "Cafe Molido con notas achocolatadas y cuerpo medio.",
-		imagen: "public/img/Card-Cafe-Molido.png",
-		precio: "$7.490"
-	},
-	{
-		nombre: "Café Etiopía",
-		descripcion: "Cafe en capsulas con sabor frutal y floral, muy aromático.",
-		imagen: "public/img/Card-Cafe-en-Capsulas.png",
-		precio: "$8.990"
-	},
-	{
-		nombre: "Café Perú",
-		descripcion: " Cafe instantaneo, Dulce y equilibrado, ideal para espresso.",
-		imagen: "public/img/Card-Cafe-Instantaneo.png",
-		precio: "$7.990"
-	},
-	{
-		nombre: "Café Guatemala",
-		descripcion: "Cafe en sobres con sabor intenso, notas a cacao y frutos secos.",
-		imagen: "public/img/Card-Cafe-en-Sobres.png",
-		precio: "$8.490"
-	}
-];
 
-const Seccion_de_Productos = () => {
+
+const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSeleccionada }) => {
+	const productos = products;
+	const productosFiltrados = categoriaSeleccionada
+	? productos.filter(prod => prod.categoria === categoriaSeleccionada)
+	: productos;
+
 	return (
 		<section className="productos-section">
-			<h2 className="productos-title">Sección de Productos</h2>
+			<h2 className="productos-title">
+				{categoriaSeleccionada 
+          ? `Productos: ${categoriaSeleccionada}` 
+          : "Todos los productos"}
+			</h2>
 			<div className="productos-list">
-				{productos.map((prod, idx) => (
+				{productosFiltrados.slice(0, cant).map((prod, idx) => (
 					<div className="producto-card" key={idx}>
 						<img src={prod.imagen} alt={prod.nombre} className="producto-img" />
 						<h3 className="producto-nombre">{prod.nombre}</h3>
@@ -49,9 +29,13 @@ const Seccion_de_Productos = () => {
 					</div>
 				))}
 			</div>
+			{mostrarVerMas && (
 			<div className="productos-vermas">
-				<button className="btn btn-primary btn-lg">Ver más productos</button>
+				<Link className="btn btn-primary btn-lg" to="/products"> 
+					Ver más productos
+				</Link>
 			</div>
+      )}
 		</section>
 	);
 };
