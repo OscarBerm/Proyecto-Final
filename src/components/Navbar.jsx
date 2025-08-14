@@ -16,7 +16,7 @@ const Navbar = () => {
 					<li><Link to="/contacto">Contáctanos</Link></li>
 				</ul>
 				<div className="navbar-actions">
-					<button className="btn-login">Iniciar sesión</button>
+					<Link to="/login"><button className="btn-login">Iniciar sesión</button></Link>
 					<Link to="/register"><button className="btn-register">Registrarse</button></Link>
 					<button className="btn-cart">
 						<i className="bi bi-cart4"></i>

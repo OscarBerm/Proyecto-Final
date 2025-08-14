@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Swal from "sweetalert2";
 import { UserContext } from "../context/UserContext";
+import Navbar from "../components/Navbar";
 import '../styles/formularios.css';
 
 const Login = () => {
@@ -33,12 +34,21 @@ const Login = () => {
   };
 
   return (
-    <div className="container my-5">
+    <div>
+      <Navbar />
+    <div className="container">
       <section className="card p-4 shadow-sm mb-5">
         <h2 className="card-tittle text-center mb-4">Iniciar sesión</h2>
+        <p className="text-center mb-5">
+          ¡Bienvenido!, Ingresa tus datos para continuar.
+        </p>
         <form>
-          <div className="mb-3">
-            <label className="label-form">Email</label>
+          <div className="text-center mb-4">
+            <label className="label-form fw-bold">Correo Electronico</label>
+            <div className="input-group">
+              <span className="input-group-text">
+              <i className="bi bi-person-square"></i>
+              </span>
             <input
               className="form-control"
               type="email"
@@ -48,9 +58,16 @@ const Login = () => {
               onChange={handleChange}
               required
             />
+            </div>
           </div>
-          <div className="mb-3">
-            <label className="label-form">Contraseña</label>
+          <div className="text-center mb-4">
+            <label className="label-form fw-bold">Contraseña</label>
+            <div className="row">
+              <div className="col-md-11">
+                <div className="input-group">
+            <span className="input-group-text">
+              <i className="bi bi-lock-fill"></i>
+              </span>
             <input
               className="form-control"
               type={showPass ? "text" : "password"}
@@ -59,14 +76,19 @@ const Login = () => {
               value={formulario.password}
               onChange={handleChange}
               required
-            />
+              />
+              </div>
+            </div>
+            <div className="col-md-1">
             <button
               type="button"
-              className="btn btn-outline-secondary btn-sm mt-1"
+              className="btn btn-outline-secondary"
               onClick={() => setShowPass(!showPass)}
             >
               <i className={`bi ${showPass ? "bi-eye-slash" : "bi-eye"} `} />
             </button>
+            </div>
+            </div>
           </div>
           <div className="text-center">
             <button className="btn btn-dark" onClick={handleSubmit}>
@@ -75,6 +97,7 @@ const Login = () => {
           </div>
         </form>
       </section>
+    </div>
     </div>
   );
 };
