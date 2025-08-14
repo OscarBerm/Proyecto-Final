@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Swal from "sweetalert2";
 import { UserContext } from "../context/UserContext";
-import '../styles/formularios.css';
+import '../styles/Formularios.css';
+import Navbar from "../components/Navbar";
 
 const Register = () => {
 
@@ -94,10 +95,12 @@ const Register = () => {
   }, [formulario]);
 
   return (
+    <div>
+    <Navbar />
     <div className="container my-5">
       <section className="card p-4 shadow-sm mb-5">
         <h2 className="card-title text-center mb-4">
-          Registro de usuario
+          Crear Cuenta
         </h2>
 
         <form onSubmit={handleSubmit}>
@@ -269,6 +272,7 @@ const Register = () => {
           </div>
         </form>
       </section>
+    </div>
     </div>
   );
 };
