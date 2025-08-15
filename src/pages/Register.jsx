@@ -3,6 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Swal from "sweetalert2";
 import { UserContext } from "../context/UserContext";
 import '../styles/Formularios.css';
+import '../styles/Register.css';
 import Navbar from "../components/Navbar";
 
 const Register = () => {
@@ -96,17 +97,16 @@ const Register = () => {
 
   return (
     <div>
-    <Navbar />
-    <div className="container my-5">
-      <section className="card p-4 shadow-sm mb-5">
-        <h2 className="card-title text-center mb-4">
-          Crear Cuenta
-        </h2>
-
-        <form onSubmit={handleSubmit}>
+      <Navbar />
+      <div className="register-container">
+        <section className="register-card">
+          <h2 className="register-title text-center mb-4">
+            Crear Cuenta
+          </h2>
+          <form onSubmit={handleSubmit}>
           <div className="row mb-3">
             <div className="col-md-6">
-              <label className="form-label">Nombre:</label>
+              <label className="register-label">Nombre:</label>
               <input
                 type="text"
                 name="nombre"
@@ -114,26 +114,26 @@ const Register = () => {
                 value={formulario.nombre}
                 required
                 onChange={handleChange}
-                className="form-control"
+                className="register-input form-control"
               />
             </div>
 
             <div className="col-md-6">
-              <label className="form-label">Apellido:</label>
+              <label className="register-label">Apellido:</label>
               <input
                 type="text"
                 name="apellido"
-                placeholder="apellido"
+                placeholder="Apellido"
                 value={formulario.apellido}
                 required
                 onChange={handleChange}
-                className="form-control"
+                className="register-input form-control"
               />
             </div>
           </div>
 
           <div className="mb-3">
-            <label className="form-label">E-mail:</label>
+            <label className="register-label">E-mail:</label>
             <input
               type="email"
               name="email"
@@ -141,25 +141,25 @@ const Register = () => {
               value={formulario.email}
               required
               onChange={handleChange}
-              className="form-control"
+              className="register-input form-control"
             />
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Direccion:</label>
+            <label className="register-label">Dirección:</label>
             <input
               type="text"
               name="direccion"
-              placeholder="Ingrese su direccion"
+              placeholder="Ingrese su dirección"
               value={formulario.direccion}
               required
               onChange={handleChange}
-              className="form-control"
+              className="register-input form-control"
             />
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Telefono:</label>
+            <label className="register-label">Teléfono:</label>
             <input
               type="text"
               inputMode="numeric"
@@ -168,12 +168,12 @@ const Register = () => {
               value={formulario.telefono}
               required
               onChange={handleChange}
-              className="form-control"
+              className="register-input form-control"
             />
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Imagen:</label>
+            <label className="register-label">Imagen:</label>
             <input
               type="text"
               name="imagen"
@@ -181,19 +181,19 @@ const Register = () => {
               value={formulario.imagen}
               required
               onChange={handleChange}
-              className="form-control"
+              className="register-input form-control"
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Rol:</label>
+            <label className="register-label">Rol:</label>
             <select
-              className="form-select mt-3"
+              className="register-select form-select mt-3"
               name="rol"
-              value={formulario.value}
+              value={formulario.rol}
               required
               onChange={handleChange}
             >
-              <option value="" selected disabled hidden>
+              <option value="" disabled hidden>
                 Seleccione un rol
               </option>
               <option value="admin">Administrador</option>
@@ -203,7 +203,7 @@ const Register = () => {
 
           <div className="row mb-4">
             <div className="col-md-6">
-              <label className="form-label">Contraseña:</label>
+              <label className="register-label">Contraseña:</label>
               <input
                 type={showPass ? "text" : "password"}
                 name="password"
@@ -211,7 +211,7 @@ const Register = () => {
                 value={formulario.password}
                 required
                 onChange={handleChange}
-                className={`form-control ${error.passLength && "is-invalid"}`}
+                className={`register-input form-control ${error.passLength && "is-invalid"}`}
               />
               {error.passLength && (
                 <div className="invalid-feedback">
@@ -221,7 +221,7 @@ const Register = () => {
             </div>
 
             <div className="col-md-6">
-              <label className="form-label">Reingrese su contraseña:</label>
+              <label className="register-label">Reingrese su contraseña:</label>
               <input
                 type={showPass ? "text" : "password"}
                 name="password2"
@@ -229,7 +229,7 @@ const Register = () => {
                 value={formulario.password2}
                 required
                 onChange={handleChange}
-                className={`form-control ${error.pass ? "is-invalid" : ""}`}
+                className={`register-input form-control ${error.pass ? "is-invalid" : ""}`}
               />
               {error.pass && (
                 <div className="invalid-feedback">
@@ -241,7 +241,7 @@ const Register = () => {
             <div className="col-12 mt-2">
               <button
                 type="button"
-                className="btn btn-outline-secondary btn-sm"
+                className="register-eye-btn btn btn-outline-secondary btn-sm"
                 onClick={() => setShowPass(!showPass)}
               >
                 <i
@@ -255,7 +255,7 @@ const Register = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="btn btn-dark"
+              className="register-btn"
               disabled={error.campos || error.pass}
             >
               Registrarse

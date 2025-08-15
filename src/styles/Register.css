@@ -1,0 +1,75 @@
+
+.register-container {
+	min-height: 80vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f7ede0;
+	margin-top: 3.5rem;
+}
+
+.register-card {
+	background: #fff;
+	border-radius: 1.2rem;
+	box-shadow: 0 4px 24px #e0c9a6a0;
+	padding: 2.5rem 2.2rem 2rem 2.2rem;
+	max-width: 600px;
+	width: 100%;
+}
+
+.register-title {
+	color: #6c4f37;
+	font-family: var(--fuente-titulos, sans-serif);
+	font-weight: 700;
+	margin-bottom: 1.2rem;
+}
+
+.register-label {
+	color: #6c4f37;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	display: block;
+	text-align: left;
+}
+
+.register-input, .register-select {
+	border-radius: 0.5rem;
+	border: 1px solid #e0c9a6;
+	padding: 0.7rem 1rem;
+	font-size: 1em;
+	margin-bottom: 1.2rem;
+	background: #f7f3ee;
+	color: #6c4f37;
+	transition: border 0.2s;
+}
+.register-input:focus, .register-select:focus {
+	border: 1.5px solid #A9855C;
+	outline: none;
+}
+
+.register-btn {
+	background: #A9855C;
+	color: #fff;
+	border: none;
+	border-radius: 0.5rem;
+	padding: 0.7rem 2.2rem;
+	font-weight: 600;
+	font-size: 1.08em;
+	box-shadow: 0 2px 8px #e0c9a6a0;
+	transition: background 0.2s;
+}
+.register-btn:hover {
+	background: #6c4f37;
+}
+
+.register-eye-btn {
+	border: none;
+	background: transparent;
+	color: #A9855C;
+	font-size: 1.1em;
+	margin-left: 0.2rem;
+	transition: color 0.2s;
+}
+.register-eye-btn:hover {
+	color: #6c4f37;
+}

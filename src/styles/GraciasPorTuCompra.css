@@ -1,0 +1,38 @@
+
+.gracias-section {
+	min-height: 60vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.gracias-titulo {
+	color: #6c4f37;
+	margin-bottom: 1.5rem;
+}
+
+.gracias-texto {
+	font-size: 1.2em;
+	color: #A9855C;
+	max-width: 400px;
+	text-align: center;
+}
+
+.gracias-btn {
+	margin-top: 2.5rem;
+	background: #A9855C;
+	color: #fff;
+	padding: 0.8rem 2.2rem;
+	border-radius: 0.5rem;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 1.1em;
+	box-shadow: 0 2px 8px #e0c9a6a0;
+	transition: background 0.2s;
+	border: none;
+	display: inline-block;
+}
+.gracias-btn:hover {
+	background: #8d6a4a;
+}

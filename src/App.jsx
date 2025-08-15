@@ -6,6 +6,9 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Profile from "./components/Profile";
+import Carrito from "./components/Carrito";
+import FormularioDePago from "./components/Formulario_de_Pago";
+import GraciasPorTuCompra from "./pages/GraciasPorTuCompra";
 import UserContextProvider from "./context/UserContext";
 
 function App() {
@@ -18,9 +21,9 @@ function App() {
           <Route path="/productRegister" element={<ProductRegister />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          {/*
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/product/:id" element={<Product />} /> */}
+          <Route path="/cart" element={<Carrito />} />
+          <Route path="/checkout" element={<FormularioDePago />} />
+          <Route path="/gracias" element={<GraciasPorTuCompra />} />
           {/* <Route path='/Profile' element={<Profile />} />  */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,0 +1,71 @@
+.pago-cafe {
+  background: #fff8f0;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px rgba(169,133,92,0.10);
+  padding: 2.5rem 2rem;
+  max-width: 700px;
+  margin: 3rem auto;
+  color: #6c4f37;
+  font-family: inherit;
+}
+.pago-titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #A9855C;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.pago-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.pago-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.pago-grupo-flex {
+  display: flex;
+  gap: 1.2rem;
+}
+.pago-grupo-flex > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.pago-form input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #e0c9a6;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: #fff;
+  color: #6c4f37;
+  outline: none;
+  transition: border 0.2s;
+}
+.pago-form input:focus {
+  border-color: #A9855C;
+}
+.pago-btn {
+  background: #A9855C;
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.9rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+.pago-btn:hover {
+  background: #8a6a4a;
+}
+.pago-exito {
+  color: #388e3c;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 1rem;
+}
