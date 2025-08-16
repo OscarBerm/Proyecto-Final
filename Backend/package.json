@@ -1,6 +1,6 @@
 {
   "name": "desafio3-",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -17,6 +17,7 @@
     "express": "5.1.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "8.16.1",
+    "uuid": "^11.1.0",
     "pg-format": "1.0.4"
   }
 }
