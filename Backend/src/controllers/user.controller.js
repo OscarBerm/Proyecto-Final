@@ -21,16 +21,17 @@ export const registrarUsuario = async (req, res) => {
   //Crear usuario
   try {
     const passwordHash = await bcrypt.hash(password, 10);
-    const nuevoUsuario = await createUserModel({
+    console.log({ nombre, apellido, email, passwordHash, direccion, telefono });
+    const nuevoUsuario = await createUserModel(
       nombre,
       apellido,
       email,
       passwordHash,
       direccion,
       telefono,
-    });
+    );
     res.status(201).json({ mensaje: "Usuario creado.", nuevoUsuario });
   } catch (e) {
-    res.status(500).json({ error: "Error al crear el usuario" });
+    res.status(500).json({ error: "Error al crear el usuario" , e});
   }
 };
