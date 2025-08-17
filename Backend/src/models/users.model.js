@@ -1,7 +1,21 @@
 import format from 'pg-format'
 import pool from '../../db/config.js'
-import bcrypt from 'bcryptjs'
 
-export const createUserModel = async (email, password, rol, lenguage) => {
-
+export const createUserModel = async (nombre,apellido,email,password,direccion,telefono) => {
+    const query = format(
+        'insert into usuarios (nombre,apellido,email,password,direccion,telefono) values (%L,%L,%L,%L,%L,%L)',
+        nombre,apellido,email,password,direccion,telefono
+    );
+    const resultado = await pool.query(query);
+    return resultado.rows[0];
 }
+
+export const getUserByEmailModel = async (email) => {
+    const query = format(
+        'select * from usuarios where email = %L',
+        email
+    );
+    const resultado = await pool.query(query);
+    return resultado.rows[0];
+}
+
