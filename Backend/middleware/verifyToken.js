@@ -7,8 +7,11 @@ const verifyToken = (req, res, next) => {
     if (!token) {
       return res.status(400).json({ message: 'Token not provided' })
     }
-    const extractedToken = token.split(' ')[1]
-    const decodedToken = jwt.verify(extractedToken, process.env.JWT_SECRET)
+    const [bearer, tokenValue] = token.split(' ');
+    if(bearer !== 'Bearer' || !tokenValue){
+      return res.status(400).json({message: 'Token not valid'});
+    }
+    const decodedToken = jwt.verify(tokenValue, process.env.JWT_SECRET)
     req.user = decodedToken.email
     next()
   } catch (error) {
