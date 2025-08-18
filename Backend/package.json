@@ -4,7 +4,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --forceExit"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,11 @@
     "express": "5.1.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "8.16.1",
-    "pg-format": "1.0.4"
+    "pg-format": "1.0.4",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "supertest": "^7.1.4"
   }
 }

@@ -8,4 +8,6 @@ export const router = Router()
 router.post('/register', registrarUsuario);
 router.post('/login', loginUser);
 
-router.use(pageNotFound);
+// router.use(pageNotFound);
+
+export default router;
