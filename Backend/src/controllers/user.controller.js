@@ -35,3 +35,9 @@ export const registrarUsuario = async (req, res) => {
     res.status(500).json({ error: "Error al crear el usuario" , e});
   }
 };
+
+
+//Manejo de rutas no encontradas
+export const pageNotFound = async (req, res) => {
+    res.status(404).send('La ruta solicitada no existe.');
+};
