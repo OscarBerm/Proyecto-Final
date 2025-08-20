@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/Seccion_de_Productos.css';
-import { products } from '../data/data.js';
+import { products } from '../data/constants.js';
 import { Link } from "react-router-dom";
 
 
