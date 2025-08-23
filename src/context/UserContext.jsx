@@ -2,13 +2,12 @@ import { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-
-
 export const UserContext = createContext()
 
 export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(localStorage.getItem('token') || null)
+    // const HOST = "http://localhost:5000";
 
 
     console.log('UserProvider token:', token)
@@ -27,8 +26,6 @@ export const UserContextProvider = ({ children }) => {
       fetchUser()
     }, [])
 
-
-     // const HOST = "http://localhost:5000";
 
   const registrarUsuario = async (nombre,apellido,email,password,direccion,telefono, imagen,rol) => {
     // try {
@@ -70,7 +67,7 @@ export const UserContextProvider = ({ children }) => {
 
   const getProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/auth/me', {
+      const response = await axios.get(`${HOST}/api/auth/me`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -79,6 +76,8 @@ export const UserContextProvider = ({ children }) => {
       return response.data
     } catch (error) {
       console.error('No se pudo conseguir profile:', error)
+      // Lanza el error para que el useEffect lo capture
+      throw error
     }
   }
 
