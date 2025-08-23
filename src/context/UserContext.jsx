@@ -1,11 +1,31 @@
 import { createContext, useState, useEffect } from 'react'
-import Swal from 'sweetalert2';
+import axios from 'axios'
+import Swal from 'sweetalert2'
+
 
 
 export const UserContext = createContext()
 
 export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState(localStorage.getItem('token') || null)
+
+
+    console.log('UserProvider token:', token)
+
+    useEffect(() => {
+      const fetchUser = async () => {
+        if (token) {
+          try {
+            const profile = await getProfile()
+            setUser(profile)
+          } catch (error) {
+            console.error('Error al cargar el perfil al inicio:', error)
+          }
+        }
+      }
+      fetchUser()
+    }, [])
 
 
      // const HOST = "http://localhost:5000";
@@ -36,14 +56,46 @@ export const UserContextProvider = ({ children }) => {
     Swal.fire('Exito', 'Sesión iniciada exitosamente','success');
   }
 
-    return (
-        <UserContext.Provider value={{
-            registrarUsuario,
-            login,
-        }}>
-            {children}
-        </UserContext.Provider>
-    )
+  useEffect(() => {
+    token ? localStorage.setItem('token', token) : localStorage.removeItem('token')
+  }, [token])
+
+
+  const logout = () => {
+    setUser(null)
+    setToken(null)
+    localStorage.removeItem('token')
+    console.log('Se cerro la sesion')
+  }
+
+  const getProfile = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/auth/me', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setUser(response.data)
+      return response.data
+    } catch (error) {
+      console.error('No se pudo conseguir profile:', error)
+    }
+  }
+
+  const stateGlobal = {
+    user,
+    logout,
+    login,
+    registrarUsuario,
+    getProfile,
+    token
+  }
+
+  return (
+    <UserContext.Provider value={stateGlobal}>
+      {children}
+    </UserContext.Provider>
+  )
 }
 
 export default UserContextProvider
