@@ -4,6 +4,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
+  getAllCategory,
 } from "../models/products.model.js";
 import { v4 as uuidv4 } from 'uuid'
 
@@ -62,5 +63,15 @@ export const deletingProducto = async (req, res) => {
     res.json(deleting);
   } catch (err) {
     res.status(500).json({ error: "Error deleting product", detalle: err.message });
+  }
+};
+
+export const allCategory = async (req, res) => {
+  console.log("Se llamó a la ruta /category");
+  try {
+    const category = await getAllCategory();
+    res.json(category);
+  } catch (err) {
+    res.status(500).json({ error: 'Error getting category', detalle: err.messag });
   }
 };

@@ -59,3 +59,9 @@ export const deleteProduct = async (id) => {
   const res = await pool.query(`DELETE FROM productos WHERE id = $1 RETURNING *`, [id]);
   return res.rows[0];
 };
+
+export const getAllCategory = async () => {
+  const sqlQuery = "SELECT * FROM categorias";
+  const res = await pool.query(sqlQuery);
+  return res.rows;
+};

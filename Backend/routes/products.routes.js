@@ -5,6 +5,7 @@ import {
   registerProduct,
   updatingProducto,
   deletingProducto,
+  allCategory,
 } from "../src/controllers/products.controller.js";
 // import { verifyToken } from '../middleware/authMiddleware.js'
 // import { validateProductData } from '../middleware/productsMiddleware.js'
@@ -16,6 +17,7 @@ router.get("/products/:id", productById);
 router.post("/products/", registerProduct);
 router.put("/products/:id", updatingProducto);
 router.delete("/products/:id", deletingProducto);
+router.get("/category/", allCategory);
 
 // router.post('/products', verifyToken, validateProductData, registerProduct)
 
