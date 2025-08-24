@@ -3,7 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Swal from "sweetalert2";
 import { UserContext } from "../context/UserContext";
 import Navbar from "../components/Navbar";
-import '../styles/formularios.css';
+import '../styles/Formularios.css';
 import '../styles/Login.css';
 
 const Login = () => {
