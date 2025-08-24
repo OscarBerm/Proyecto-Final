@@ -9,9 +9,14 @@ const PORT = process.env.PORT ?? 3000
 
 const app = express()
 
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://proyecto-final-seven-gamma.vercel.app'
+];
+
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin: allowedOrigins,
     })
 );
 
