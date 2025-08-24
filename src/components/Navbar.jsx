@@ -3,11 +3,13 @@ import '../styles/Navbar.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Navbar = () => {
+	const logo = "/img/Cafe-y-Cuento(logo-sin-fondo).png"
+	
 	return (
 		<nav className="navbar-cafe">
 			<div className="navbar-content">
 				<div className="navbar-left">
-					<img src="public/img/Cafe y Cuento (logo sin fondo).png" alt="Logo" className="navbar-logo" />
+					<img src={logo} alt="Logo" className="navbar-logo" />
 					<span className="navbar-brand">Café y Cuento</span>
 				</div>
 				<ul className="navbar-links">

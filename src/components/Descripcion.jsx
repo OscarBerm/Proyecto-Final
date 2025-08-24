@@ -2,6 +2,8 @@ import React from "react";
 import '../styles/Descripcion.css';
 
 const Descripcion = () => {
+	const logo = "/img/Cafe-y-Cuento(logo).png"
+
 	return (
 		<section className="descripcion-section">
 			<div className="descripcion-content">
@@ -13,7 +15,7 @@ const Descripcion = () => {
 					</p>
 				</div>
 				<div className="descripcion-logo">
-					<img src="public/img/Cafe y Cuento (logo).png" alt="Logo Café y Cuento" />
+					<img src={logo} alt="Logo Café y Cuento" />
 				</div>
 			</div>
 		</section>

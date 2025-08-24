@@ -14,7 +14,7 @@ useEffect(() => {
 		try {
 		const response = await fetch(API_URL);
 		const data = await response.json();
-		setProductos(data.product); // <-- acá está la solución
+		setProductos(data.product); 
 		} catch (error) {
 		console.error("Error al cargar los productos:", error);
 		} finally {

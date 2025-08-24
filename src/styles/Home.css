@@ -1,6 +1,6 @@
 /* Hero seccion */
 .hero-section {
-	background-image: url('public/img/Imagen_Principal.png');
+	background-image: url('/img/Imagen_Principal.png');
 	background-size: cover;
 	background-position: center;
 	min-height: 60vh;

@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import '../styles/Footer.css';
 
 const Footer = () => {
+	const logo = "/img/Cafe-y-Cuento(logo-sin-fondo).png"
+
 	return (
 		<footer className="footer-cafe">
 			<div className="footer-content">
 				<div className="footer-left">
-					<img src="public/img/Cafe y Cuento (logo sin fondo).png" alt="Logo" className="footer-logo" />
+					<img src={logo} alt="Logo" className="footer-logo" />
 				</div>
 				<ul className="footer-links">
 					  <li><Link to="/">Inicio</Link></li>
