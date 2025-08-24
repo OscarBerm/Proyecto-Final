@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
-import notFoundImage from '../../public/img/NotFound.jpg'
 import '../styles/NotFound.css'
 
 const NotFound = () => {
+  const notFoundImage = "/img/NotFound.jpg";
+
+
   return (
     <div className='container text-center mt-5'>
       <div className='error-code'>404</div>
