@@ -1,13 +1,15 @@
 import { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { URL_BASE } from '../data/constants';
+
 
 export const UserContext = createContext()
 
 export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(localStorage.getItem('token') || null)
-    const HOST = "http://localhost:5000";
+    const HOST = URL_BASE;
 
 
     console.log('UserProvider token:', token)
