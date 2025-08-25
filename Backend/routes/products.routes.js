@@ -7,18 +7,17 @@ import {
   deletingProducto,
   allCategory,
 } from "../src/controllers/products.controller.js";
-// import { verifyToken } from '../middleware/authMiddleware.js'
-// import { validateProductData } from '../middleware/productsMiddleware.js'
+import { verifyToken } from '../middleware/authMiddleware.js'
+import { isAdmin } from '../middleware/isAdmin.js'
+import { validateProductData } from '../middleware/productsMiddleware.js'
 
 const router = Router()
 
-router.get("/products/", allProducts);
-router.get("/products/:id", productById);
-router.post("/products/", registerProduct);
-router.put("/products/:id", updatingProducto);
-router.delete("/products/:id", deletingProducto);
-router.get("/category/", allCategory);
+router.get("/products/", allProducts)
+router.get("/products/:id", productById)
+router.post("/products/", verifyToken, isAdmin, validateProductData, registerProduct)
+router.put("/products/:id", verifyToken, isAdmin, updatingProducto)
+router.delete("/products/:id", verifyToken, isAdmin, deletingProducto)
+router.get("/category/", allCategory)
 
-// router.post('/products', verifyToken, validateProductData, registerProduct)
-
-export default router;
+export default router
