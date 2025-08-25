@@ -75,6 +75,16 @@ const Register = () => {
       direccion,
       telefono
     );
+    setFormulario({
+      nombre: "",
+      apellido: "",
+      email: "",
+      password: "",
+      password2: "",
+      direccion: "",
+      telefono: ""
+    });
+
   };
 
   const handleChange = (e) => {
