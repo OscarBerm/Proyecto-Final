@@ -3,12 +3,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Swal from "sweetalert2";
 import { UserContext } from "../context/UserContext";
 import Navbar from "../components/Navbar";
-import '../styles/Formularios.css';
-import '../styles/Login.css';
+import "../styles/Formularios.css";
+import "../styles/Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { login } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const [formulario, setFormulario] = useState({
     email: "",
     password: "",
@@ -31,7 +32,7 @@ const Login = () => {
       );
       return;
     }
-    login(email, password);
+    login(email, password, () => navigate("/profile"));
   };
 
   return (

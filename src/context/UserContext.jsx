@@ -42,14 +42,16 @@ export const UserContextProvider = ({ children }) => {
      }
   };
 
-  const login = async (email, password) => {
+  const login = async (email, password, onSuccess) => {
          try {
      const URL = HOST+"/login";
      const datos = {email,password}
        const response = await axios.post(URL,datos );
+       console.log(response)
        setUser(response.data.usuario_id);
        setToken(response.data.token)
         Swal.fire('Exito', 'Sesión iniciada exitosamente','success');
+          if (onSuccess) onSuccess();
      } catch (error) {
        Swal.fire("error","Usuario o Contraseña incorrectos","error");
        return;
