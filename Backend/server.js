@@ -11,7 +11,8 @@ const app = express()
 
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://proyecto-final-seven-gamma.vercel.app'
+    'https://proyecto-final-seven-gamma.vercel.app',
+    'https://cafeycuento.netlify.app'
 ];
 
 app.use(
