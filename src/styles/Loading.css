@@ -1,0 +1,28 @@
+.loading-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+  gap: 10px;
+}
+p {
+    color: #8a6a4a;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@keyframes smokeFade {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+}
+#smoke {
+  animation: smokeFade 1.5s ease infinite;
+}

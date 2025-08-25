@@ -6,14 +6,18 @@ import Footer from "../components/Footer";
 
 const GalleryProducts = () => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+  const [nombreCategoriaSeleccionada, setNombreCategoriaSeleccionada] = useState(null);
   
-  const toggleCategoria = (categoriaId) => {
+const toggleCategoria = (categoriaId, categoriaNombre) => {
   if (categoriaSeleccionada === categoriaId) {
     setCategoriaSeleccionada(null);
+    setNombreCategoriaSeleccionada('');
   } else {
     setCategoriaSeleccionada(categoriaId);
+    setNombreCategoriaSeleccionada(categoriaNombre);
   }
 };
+
 
 	return (
 		<div>
@@ -25,7 +29,9 @@ const GalleryProducts = () => {
       <Seccion_de_Productos 
         cant={15} 
         mostrarVerMas={false} 
-        categoriaSeleccionada={categoriaSeleccionada}/>
+        categoriaSeleccionada={categoriaSeleccionada}
+        nombreCategoriaSeleccionada={nombreCategoriaSeleccionada}
+        />
 			<Footer />
 		</div>
 	);

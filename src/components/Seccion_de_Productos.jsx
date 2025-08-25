@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import '../styles/Seccion_de_Productos.css';
 import { URL_BASE } from '../data/constants';
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
-const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSeleccionada }) => {
+const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSeleccionada, nombreCategoriaSeleccionada }) => {
 	const [productos, setProductos] = useState([]);
 	const [loading, setLoading] = useState(true);
 
@@ -26,19 +27,19 @@ useEffect(() => {
 }, []);
 
 	const productosFiltrados = categoriaSeleccionada
-		? productos.filter(prod => prod.categoria === categoriaSeleccionada)
+		? productos.filter(prod => prod.categoria_id === categoriaSeleccionada)
 		: productos;
 
 	return (
 		<section className="productos-section">
 		<h2 className="productos-title">
 			{categoriaSeleccionada
-			? `Productos: ${categoriaSeleccionada}`
+			? `Productos: ${nombreCategoriaSeleccionada}`
 			: "Todos los productos"}
 		</h2>
 
 		{loading ? (
-			<p>Cargando productos...</p>
+			<Loading />
 		) : (
 			<>
 			<div className="productos-list">
@@ -47,7 +48,7 @@ useEffect(() => {
 					<img src={prod.imagen_url} alt={prod.nombre} className="producto-img" />
 					<h3 className="producto-nombre">{prod.nombre}</h3>
 					<p className="producto-desc">{prod.descripcion}</p>
-					<span className="producto-precio">{prod.precio}</span>
+					<span className="producto-precio">${parseFloat(prod.precio).toLocaleString('es-CL')}</span>
 					<button className="btn btn-success producto-btn">Añadir</button>
 				</div>
 				))}

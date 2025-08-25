@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { URL_BASE } from '../data/constants';
 import '../styles/Categorias.css';
+import Loading from "./Loading";
+
 
 const Categorias = ({ onSelectCategoria, categoriaActiva }) => {
 	const [categorias, setCategorias] = useState([]);
@@ -27,23 +29,25 @@ const Categorias = ({ onSelectCategoria, categoriaActiva }) => {
 		fetchCategorias();
 	}, []);
 
-	if (loading) return <p>Cargando categorías...</p>;
-
 	return (
 		<section className="categorias-section">
 			<h2 className="categorias-title">Categorías</h2>
+			{loading ? (
+			<Loading />
+				) : (
 			<div className="categorias-list">
 				{categorias.map((cat, idx) => (
 					<button
-						className={`categoria-item ${categoriaActiva === cat.nombre ? 'active' : ''}`}
+						className={`categoria-item ${categoriaActiva === cat.id ? 'active' : ''}`}
 						key={idx}
-						onClick={() => onSelectCategoria(cat.nombre)}
+						onClick={() => onSelectCategoria(cat.id, cat.nombre)}
 					>
 						<img src={cat.img_path} alt={cat.nombre} className="categoria-img" />
 						<span className="categoria-nombre">{cat.nombre}</span>
 					</button>
 				))}
 			</div>
+				)}
 		</section>
 	);
 };
