@@ -11,20 +11,15 @@ const app = express()
 
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://proyecto-final-seven-gamma.vercel.app',
-    'https://cafeycuento.netlify.app'
+    'https://proyecto-final-seven-gamma.vercel.app'
 ];
-
 
 app.use(
     cors({
-        origin: (origin, callback) => {
-            callback(null, true);
-        },
-        credentials: true
+        origin: allowedOrigins,
     })
 );
-app.options('*', cors());
+
 
 app.use(express.json())
 app.use(productsRoute)
