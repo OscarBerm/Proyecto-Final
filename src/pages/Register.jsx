@@ -17,9 +17,7 @@ const Register = () => {
     password: "",
     password2: "",
     direccion: "",
-    telefono: "",
-    imagen: "",
-    rol: "",
+    telefono: ""
   });
 
   const [showPass, setShowPass] = useState(false);
@@ -32,9 +30,7 @@ const Register = () => {
       email,
       password,
       direccion,
-      telefono,
-      imagen,
-      rol,
+      telefono
     } = formulario;
 
     const camposVacio =
@@ -43,9 +39,7 @@ const Register = () => {
       !email.trim() ||
       !password.trim() ||
       !direccion.trim() ||
-      !telefono.trim() ||
-      !imagen.trim() ||
-      !rol.trim();
+      !telefono.trim();
 
       const pass = password !== formulario.password2;
 
@@ -70,9 +64,7 @@ const Register = () => {
       email,
       password,
       direccion,
-      telefono,
-      imagen,
-      rol,
+      telefono
     } = formulario;
 
     registrarUsuario(
@@ -81,9 +73,7 @@ const Register = () => {
       email,
       password,
       direccion,
-      telefono,
-      imagen,
-      rol
+      telefono
     );
   };
 
@@ -170,35 +160,6 @@ const Register = () => {
               onChange={handleChange}
               className="register-input form-control"
             />
-          </div>
-
-          <div className="mb-3">
-            <label className="register-label">Imagen:</label>
-            <input
-              type="text"
-              name="imagen"
-              placeholder="URL de la imagen"
-              value={formulario.imagen}
-              required
-              onChange={handleChange}
-              className="register-input form-control"
-            />
-          </div>
-          <div className="mb-3">
-            <label className="register-label">Rol:</label>
-            <select
-              className="register-select form-select mt-3"
-              name="rol"
-              value={formulario.rol}
-              required
-              onChange={handleChange}
-            >
-              <option value="" disabled hidden>
-                Seleccione un rol
-              </option>
-              <option value="admin">Administrador</option>
-              <option value="user">Cliente</option>
-            </select>
           </div>
 
           <div className="row mb-4">

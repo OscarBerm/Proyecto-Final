@@ -7,7 +7,7 @@ export const UserContext = createContext()
 export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(localStorage.getItem('token') || null)
-    // const HOST = "http://localhost:5000";
+    const HOST = "http://localhost:5000";
 
 
     console.log('UserProvider token:', token)
@@ -27,30 +27,31 @@ export const UserContextProvider = ({ children }) => {
     }, [])
 
 
-  const registrarUsuario = async (nombre,apellido,email,password,direccion,telefono, imagen,rol) => {
-    // try {
-    // const URL = HOST+"/api/auth/login";
-    // const datos = {nombre,apellido,email,password,direccion,telefono, imagen,rol}
-    //   const response = await axios.post(URL,datos );
-    //   setUser(response.data);
-    // } catch (error) {
-    //   Swal.fire('Error', 'Error al registrar al usuario', 'error')
-    //   return;
-    // }
-    Swal.fire('Usuario registrado', 'El usuario ha sido registrado correctamente', 'success');
+  const registrarUsuario = async (nombre,apellido,email,password,direccion,telefono) => {
+     try {
+     const URL = HOST+"/register";
+     const datos = {nombre,apellido,email,password,direccion,telefono}
+       const response = await axios.post(URL,datos );
+       setUser(response.data);
+       Swal.fire('Exito', 'Usuarios registrado exitosamente','success');
+     } catch (error) {
+       Swal.fire('Error', 'Error al registrar al usuario', 'error')
+       return;
+     }
   };
 
   const login = async (email, password) => {
-    //     try {
-    // const URL = HOST+"/api/auth/login";
-    // const datos = {email,password}
-    //   const response = await axios.post(URL,datos );
-    //   setUser(response.data);
-    // } catch (error) {
-    //   Swal.fire("error","Usuario o Contraseña incorrectos","error");
-    //   return;
-    // }
-    Swal.fire('Exito', 'Sesión iniciada exitosamente','success');
+         try {
+     const URL = HOST+"/login";
+     const datos = {email,password}
+       const response = await axios.post(URL,datos );
+       setUser(response.data.usuario_id);
+       setToken(response.data.token)
+        Swal.fire('Exito', 'Sesión iniciada exitosamente','success');
+     } catch (error) {
+       Swal.fire("error","Usuario o Contraseña incorrectos","error");
+       return;
+     }
   }
 
   useEffect(() => {
