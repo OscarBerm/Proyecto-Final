@@ -1,1 +1,2 @@
-export const URL_BASE = import.meta.env.VITE_API_URL ?? 'https://proyecto-final-pv5g.onrender.com';
+export const URL_BASE = import.meta.env.VITE_API_URL ?? 'https://cafe-y-cuento.onrender.com/api';
+// https://proyecto-final-pv5g.onrender.com
