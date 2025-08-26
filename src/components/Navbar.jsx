@@ -33,7 +33,6 @@ const handleLogout = () => {
       <div className="navbar-content">
         <div className="navbar-left">
           <img src={logo} alt="Logo" className="navbar-logo" />
-          <span className="navbar-brand">Café y Cuento</span>
         </div>
         <ul className="navbar-links">
           <li>
