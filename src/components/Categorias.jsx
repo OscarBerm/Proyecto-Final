@@ -5,7 +5,7 @@ import '../styles/Categorias.css';
 import Loading from "./Loading";
 
 
-const Categorias = ({ onSelectCategoria, categoriaActiva }) => {
+const Categorias = ({ onSelectCategoria, categoriaActiva, redirectOnClick = false }) => {
 	const [categorias, setCategorias] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
@@ -24,8 +24,6 @@ const Categorias = ({ onSelectCategoria, categoriaActiva }) => {
 			setLoading(false);
 			}
 		};
-
-
 		fetchCategorias();
 	}, []);
 
@@ -40,8 +38,18 @@ const Categorias = ({ onSelectCategoria, categoriaActiva }) => {
 					<button
 						className={`categoria-item ${categoriaActiva === cat.id ? 'active' : ''}`}
 						key={idx}
-						onClick={() => onSelectCategoria(cat.id, cat.nombre)}
-					>
+						onClick={() => {
+							if (redirectOnClick) {
+								navigate('/products', {
+									state: {
+										categoriaId: cat.id,
+										categoriaNombre: cat.nombre,
+									}
+									});
+							} else {
+								onSelectCategoria(cat.id, cat.nombre);
+							}
+						}} >
 						<img src={cat.img_path} alt={cat.nombre} className="categoria-img" />
 						<span className="categoria-nombre">{cat.nombre}</span>
 					</button>

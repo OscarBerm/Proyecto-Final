@@ -19,7 +19,7 @@ const Home = () => {
 					<Link to="/products" className="btn btn-primary btn-lg">Ver productos</Link>
 				</div>
 			</div>
-            <Categorias />
+            <Categorias redirectOnClick={true} />
             <Seccion_de_Productos cant={5} mostrarVerMas={true} />
             <Descripcion />
             <Footer />
