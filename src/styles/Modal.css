@@ -1,0 +1,68 @@
+.modal-producto-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+.modal-producto {
+    background-color: #fff8f0;
+    padding: 2rem;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.modal-img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 6px;
+}
+.modal-cerrar {
+    position: absolute;
+    color: #A9855C;
+    top: -10px;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.modal-cerrar:hover {
+    color: #8a6a4a
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin-top: 15px;
+}
+h2, strong {
+    color: #A9855C;
+}
+p {
+    text-wrap: wrap;
+    font-size: 16px;
+    color: #333;
+}
+
+@media (768px <= width) {
+    .modal-producto {
+        display: flex;
+        gap: 15px;
+        
+        & .producto-btn {
+            border-radius: 50px;
+            align-self: end;
+            width: auto;
+            padding: 8px 24px;
+        }
+    }    
+    .info {
+        gap: 15px;
+    }
+}

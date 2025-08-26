@@ -34,21 +34,25 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	transition: box-shadow 0.2s, transform 0.2s;
+	backface-visibility: hidden;
+	transform: translateZ(0);
+	transition: box-shadow 0.2s;
 }
 
 .producto-card:hover {
 	box-shadow: 0 6px 24px rgba(0,0,0,0.13);
-	transform: translateY(-4px) scale(1.04);
+}
+.producto-card:hover .producto-img {
+	transform: scale(1.04);
 }
 
 .producto-img {
-	width: 130px;
-	height: 110px;
-    border-radius: 10%;
+	width: 100%;
+    border-radius: 20px;
 	object-fit: cover;
 	margin-bottom: 1rem;
 	border: 2px solid #e0c9a6;
+	transition: transform 0.3s;
 }
 
 .producto-nombre {
@@ -86,11 +90,7 @@
 	color: #fff;
 	transition: background 0.2s, border 0.2s, box-shadow 0.2s;
 }
-.producto-btn:hover {
-	background-color: #8a6a4a;
-	border-color: #8a6a4a;
-}
-.producto-btn:hover {
+.producto-btn:hover, .producto-btn:focus, .producto-btn:active {
 	background-color: #8a6a4a;
 	border-color: #8a6a4a;
 }
@@ -117,4 +117,34 @@
 
 .productos-vermas .btn-primary {
 	margin-right: 2.5rem;
+}
+.producto-img-container {
+	position: relative;
+	overflow: hidden;
+	border-radius: 20px;
+}
+.vista-previa-btn {
+	position: absolute;
+	width: 130px;
+	top: 50%;
+	left: 50%;
+	font-size: 14px;
+	transform: translate(-50%, -50%);
+	background-color: #fff8f0;
+	backdrop-filter: blur(10px);
+	color: #6c4f37;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 50px;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	cursor: pointer;
+	z-index: 2;
+	
+	& svg{
+		margin-right: 5px;
+	}
+}
+.producto-card:hover .vista-previa-btn {
+	opacity: 0.9;
 }

@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom'
 import '../styles/NotFound.css'
 
 const NotFound = () => {
-  const notFoundImage = "/img/NotFound.jpg";
-
 
   return (
     <div className='container text-center mt-5'>
@@ -13,9 +11,6 @@ const NotFound = () => {
       <Link to='/' className='home-link'>
         Volver a la página principal
       </Link>
-      <div className='error-image'>
-        <img src={notFoundImage} alt='Error 404' className='img-fluid w-50' />
-      </div>
     </div>
   )
 }
