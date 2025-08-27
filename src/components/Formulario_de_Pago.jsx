@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from '../context/UserContext';
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import '../styles/Formulario_de_Pago.css';
@@ -20,12 +21,14 @@ const FormularioDePago = () => {
   const navigate = useNavigate();
   const [enviado, setEnviado] = useState(false);
 
+  const { user } = useContext(UserContext);
   // Cargar carrito desde backend al montar
   React.useEffect(() => {
-    fetch('http://localhost:3000/api/carrito')
+    if (!user?.usuario_id) return;
+    fetch(`https://proyecto-final-pv5g.onrender.com/carrito?usuario_id=${user.usuario_id}`)
       .then(res => res.json())
       .then(data => setProductosCarrito(data));
-  }, []);
+  }, [user]);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -98,7 +101,11 @@ const FormularioDePago = () => {
     });
     setTimeout(() => {
       // Vaciar carrito en backend
-      fetch('http://localhost:3000/api/carrito', { method: 'DELETE' })
+      fetch(`https://proyecto-final-pv5g.onrender.com/carrito`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usuario_id: user.usuario_id })
+      })
         .then(() => {
           Swal.close();
           navigate('/gracias');

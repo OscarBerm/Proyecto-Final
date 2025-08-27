@@ -34,11 +34,17 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 
 	// Función para añadir producto al carrito
 	const agregarAlCarrito = async (producto) => {
+		const datos = { 
+			usuario_id: user.usuario_id, 
+			producto_id: producto.id, 
+			cantidad: 1 
+		};
+		console.log('Enviando al backend:', datos);
 		try {
 			const res = await fetch(CARRITO_URL, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ productoId: producto.id, cantidad: 1 })
+				body: JSON.stringify(datos)
 			});
 			if (!res.ok) throw new Error("No se pudo añadir al carrito");
 			setMensaje("Producto añadido al carrito");
