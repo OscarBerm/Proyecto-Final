@@ -1,20 +1,41 @@
-import React, { useState } from 'react'
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { v4 as uuidv4 } from 'uuid'
-
+import { URL_BASE } from '../data/constants'
+import { UserContext } from '../context/UserContext'
 import '../styles/ProductRegister.css'
+import Navbar from "../components/Navbar";
 
 const ProductRegister = () => {
+    const API_URL = `${URL_BASE}/products/`;
+    const { user } = useContext(UserContext);
+    const [categorias, setCategorias] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchCategorias = async () => {
+            try {
+                const response = await fetch(`${URL_BASE}/category/`);
+                const data = await response.json();
+                setCategorias(data);
+            } catch (error) {
+                console.error('Error al cargar las categorías:', error);
+            }
+        };
+
+        fetchCategorias();
+    }, []);
+
+
     const [product, setProduct] = useState({
         nombre: '',
-        categoria: 'categoria1',
+        categoria_id: '',
         cantidad: 1,
         precio: 0,
         imagenUrl: '',
         descripcion: ''
     })
-
-    const [productsList, setProductsList] = useState([])
 
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -44,10 +65,12 @@ const ProductRegister = () => {
         setError(null)
         setLoading(true)
 
-        const { nombre, categoria, cantidad, precio, imagenUrl, descripcion } = product
+        const { nombre, categoria_id, cantidad, precio, imagenUrl, descripcion } = product
+        const categoriaSeleccionada = categorias.find(cat => cat.id === categoria_id);
+        const categoriaNombre = categoriaSeleccionada?.nombre || '';
 
 
-        if (!nombre.trim() || !categoria.trim() || !imagenUrl.trim() || !descripcion.trim()) {
+        if (!nombre.trim() || !categoria_id.trim() || !imagenUrl.trim() || !descripcion.trim()) {
             setError('Todos los campos deben estar llenos.');
             Swal.fire('Error', 'Todos los campos deben estar llenos.', 'error')
             setLoading(false)
@@ -61,33 +84,52 @@ const ProductRegister = () => {
             return
         }
 
-
-        console.log('Datos del producto a registrar:', product)
-
         try {
-            // await axios.post('/api/products', product)
+            console.log("Usuario desde contexto:", user);
+            const payload = {
+                nombre,
+                descripcion,
+                precio,
+                stock: cantidad,
+                categoria: categoriaNombre,
+                imagen_url: imagenUrl,
+                categoria_id, 
+                creado_por: user.usuario_id
+            };
 
-            const newProduct = { ...product, id: uuidv4() }
-            setProductsList((prevList) => [...prevList, newProduct])
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user?.token}`
+                },
+                body: JSON.stringify(payload)
+            });
+            console.log('Datos del producto a registrar:', payload)
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData?.error || 'Error al registrar el producto.');
+            }
 
             Swal.fire({
                 icon: 'success',
                 title: '¡Producto registrado!',
-                text: 'El producto ha sido añadido a la lista.',
+                text: 'El producto ha sido añadido correctamente.',
                 timer: 2000,
                 showConfirmButton: false
-            })
-
+            });
 
             setProduct({
                 nombre: '',
-                categoria: 'categoria1',
+                categoria: '',
                 cantidad: 1,
                 precio: 0,
                 imagenUrl: '',
                 descripcion: ''
             });
-
+            setTimeout(() => {
+            navigate('/products')
+            }, 2000);
         } catch (error) {
             setError('Error al registrar el producto. Inténtalo de nuevo.')
             Swal.fire('Error', 'Error al registrar el producto. Inténtalo de nuevo.', 'error')
@@ -97,6 +139,8 @@ const ProductRegister = () => {
     };
 
     return (
+        <>
+        <Navbar />
         <div className="container my-5">
 
             <section className="card p-4 shadow-sm mb-5">
@@ -120,15 +164,18 @@ const ProductRegister = () => {
                         <div className="col-md-6">
                             <label htmlFor="categoria" className="form-label">Categoría:</label>
                             <select
-                                name="categoria"
-                                value={product.categoria}
+                                name="categoria_id"
+                                value={product.categoria_id || ''}
                                 onChange={handleChange}
                                 className="form-select"
                                 required
                             >
-                                <option value="categoria1">Categoría 1</option>
-                                <option value="categoria2">Categoría 2</option>
-                                <option value="categoria3">Categoría 3</option>
+                                <option value="">Seleccione una categoría</option>
+                                {categorias.map((cat) => (
+                                    <option key={cat.id} value={cat.id}>
+                                        {cat.nombre}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className="col-md-6">
@@ -213,7 +260,7 @@ const ProductRegister = () => {
             </section>
 
 
-            <section className="card p-4 shadow-sm">
+            {/* <section className="card p-4 shadow-sm">
                 <h3 className="card-title text-center mb-4">Lista de Productos</h3>
                 <div className="table-responsive">
                     <table className="table table-bordered">
@@ -252,8 +299,9 @@ const ProductRegister = () => {
                         </tbody>
                     </table>
                 </div>
-            </section>
+            </section> */}
         </div>
+        </>
     )
 }
 

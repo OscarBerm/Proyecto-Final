@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const logo = "/img/Cafe-y-Cuento(logo-sin-fondo).png";
-	const { token, logout} = useContext(UserContext);
+	const { token, logout, user } = useContext(UserContext);
   const navigate = useNavigate();
 
 const handleLogout = () => {
@@ -45,6 +45,11 @@ const handleLogout = () => {
           <li>
             <Link to="/contacto">Contáctanos</Link>
           </li>
+          {user?.rol === "admin" && (
+            <li>
+              <Link to="/ProductRegister">Agregar Producto</Link>
+            </li>
+          )}
         </ul>
         <div className="navbar-actions">
           {token ? (

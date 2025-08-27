@@ -22,7 +22,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<GalleryProducts />} />
-          <Route path="/productRegister" element={<ProductRegister />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Carrito />} />
@@ -30,7 +29,10 @@ function App() {
           <Route path="/gracias" element={<GraciasPorTuCompra />} />
           <Route path='/Profile' element={<Profile />} /> 
           {user?.rol === "admin" && (
-          <Route path="/products/:id" element={<EditProduct />} />
+            <>
+              <Route path="/productRegister" element={<ProductRegister />} />
+              <Route path="/products/:id" element={<EditProduct />} />
+            </>
           )}
           <Route path="*" element={<NotFound />} />
         </Routes>
