@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { UserContext } from '../context/UserContext'
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 const Navbar = () => {
   const logo = "/img/Cafe-y-Cuento(logo-sin-fondo).png";
 	const { token, logout} = useContext(UserContext);
+  const navigate = useNavigate();
 
 const handleLogout = () => {
 		Swal.fire({
