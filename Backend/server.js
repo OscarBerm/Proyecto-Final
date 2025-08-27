@@ -23,10 +23,9 @@ app.use(
 
 app.use(express.json())
 
-
 app.use(productsRoute)
 app.use(userRoute);
-app.use('/api', carritoRoute);
+app.use(carritoRoute);
 
 
 app.listen(PORT, console.log(`Server on http://localhost:${PORT}`))
