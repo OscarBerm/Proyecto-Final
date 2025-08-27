@@ -113,34 +113,6 @@ const Profile = () => {
           <section className="bg-white p-4 rounded shadow-sm">
             <h2 className="mb-4">Historial de Compras</h2>
             <hr />
-            {purchaseHistory.map((item) => (
-              <div
-                key={item.id}
-                className="d-flex align-items-center border-bottom py-3"
-              >
-                <div
-                  className="me-4 bg-light border"
-                  style={{ width: "80px", height: "80px" }}
-                >
-                  <img
-                    src={item.imageUrl}
-                    alt={item.productName}
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="flex-grow-1">
-                  <h5 className="mb-1">{item.productName}</h5>
-                  <p className="text-muted mb-0">{item.description}</p>
-                </div>
-                <div className="text-center me-4">
-                  <strong className="d-block">${item.price}</strong>
-                </div>
-                <div className="text-center me-4">
-                  <small>x{item.quantity}</small>
-                </div>
-                <button className="btn btn-dark">Comprar de nuevo</button>
-              </div>
-            ))}
           </section>
         </main>
       </div>
