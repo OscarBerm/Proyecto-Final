@@ -1,0 +1,102 @@
+.edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+}
+.form-edit {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    gap: 10px;
+    padding: 40px 80px;
+    border-radius: 8px;
+}
+.tit-edit, .label-edit, .check-tit {
+    color: #6c4f37;
+}
+.label-edit, .check-tit {
+    font-size: 1.08em;
+    font-weight: 600;
+    margin-right: 10px;
+    margin-bottom: 2px;
+}
+.input-edit {
+    width: 100%;
+	border-radius: 0.5rem;
+	border: 1px solid #e0c9a6;
+	padding: 0.7rem 1rem;
+	font-size: 1em;
+	background: #f7f3ee;
+	color: #6c4f37;
+	transition: border 0.2s;
+}
+.input-edit:focus {
+	border: 1.5px solid #A9855C;
+	outline: none;
+}
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.btn-edit, .btn-cancel {
+    width: 100%;
+}
+.btn-cancel {
+    background-color: #B00020;
+    border-color: #B00020;
+}
+.btn-cancel:hover, .btn-cancel:focus {
+	background: #bb2d3b;
+    border-color: #B00020;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-bottom: 0;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: #A9855C;
+}
+input:checked + .slider::before {
+    transform: translateX(17px);
+}
+@media (768px <= width) {
+    .btn-group {
+        flex-direction: row;
+        margin-top: 30px;
+        .btn-edit, .btn-cancel {
+            width: 50%;
+        }
+    }
+}
