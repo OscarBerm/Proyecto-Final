@@ -8,7 +8,7 @@ import {
   allCategory,
   allProductsAdmin,
 } from "../src/controllers/products.controller.js";
-import { verifyToken } from '../middleware/authMiddleware.js'
+import { verifyToken } from '../middleware/verifyToken.js'
 import { isAdmin } from '../middleware/isAdmin.js'
 import { validateProductData } from '../middleware/productsMiddleware.js'
 
