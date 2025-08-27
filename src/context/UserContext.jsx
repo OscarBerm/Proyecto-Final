@@ -36,7 +36,7 @@ export const UserContextProvider = ({ children }) => {
   const registrarUsuario = async (nombre,apellido,email,password,direccion,telefono) => {
      try {
      const URL = HOST+"/register";
-     const datos = {nombre,apellido,email,password,direccion,telefono, imagen: '../../public/img/usuario/default_perfil.png'}
+     const datos = {nombre,apellido,email,password,direccion,telefono, imagen: '/public/img/usuario/default_perfil.png'}
        const response = await axios.post(URL,datos );
        setUser(response.data);
        Swal.fire('Exito', 'Usuarios registrado exitosamente','success');

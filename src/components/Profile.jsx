@@ -64,7 +64,11 @@ const Profile = () => {
                   style={{ width: "150px", height: "150px", margin: "0 auto" }}
                 >
                   {/* Aquí iría la imagen de perfil del usuario */}
-                  <span className="text-secondary">Imagen</span>
+                  <img
+                    src={user.imagen || "/public/img/usuario/default_perfil.png"}
+                    alt="Imagen de perfil"
+                    className="img-fluid"
+                  />
                 </div>
                 <button className="btn btn-dark w-75 mb-3">
                   Añadir imagen
