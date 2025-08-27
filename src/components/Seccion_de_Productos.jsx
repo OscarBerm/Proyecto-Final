@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import '../styles/Seccion_de_Productos.css';
 import '../styles/Modal.css'
 import { URL_BASE } from '../data/constants';
+import Swal from 'sweetalert2';
 import Loading from "./Loading";
 
 // Ruta del carrito
@@ -39,7 +40,6 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 			producto_id: producto.id, 
 			cantidad: 1 
 		};
-		console.log('Enviando al backend:', datos);
 		try {
 			const res = await fetch(CARRITO_URL, {
 				method: "POST",
@@ -47,11 +47,18 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 				body: JSON.stringify(datos)
 			});
 			if (!res.ok) throw new Error("No se pudo añadir al carrito");
-			setMensaje("Producto añadido al carrito");
-			setTimeout(() => setMensaje(""), 2000);
+			Swal.fire({
+				icon: 'success',
+				title: '¡Producto añadido al carrito!',
+				showConfirmButton: false,
+				timer: 1200
+			});
 		} catch (error) {
-			setMensaje("Error al añadir al carrito");
-			setTimeout(() => setMensaje(""), 2000);
+			Swal.fire({
+				icon: 'error',
+				title: 'Error al añadir al carrito',
+				text: error.message || ''
+			});
 		}
 	};
 	
