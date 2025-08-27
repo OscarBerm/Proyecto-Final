@@ -27,15 +27,15 @@ router.post('/carrito', async (req, res) => {
   const { usuario_id, producto_id, cantidad } = req.body;
   if (!usuario_id || !producto_id || !cantidad) return res.status(400).json({ error: 'usuario_id, producto_id y cantidad requeridos' });
   try {
+    // Elimina todos los productos del carrito de ese usuario
+    await pool.query('DELETE FROM carrito WHERE usuario_id = $1', [usuario_id]);
+    // Inserta el nuevo producto
     await pool.query(
       `INSERT INTO carrito (usuario_id, producto_id, cantidad)
-       VALUES ($1, $2, $3)
-       ON CONFLICT (usuario_id, producto_id)
-       DO UPDATE SET cantidad = carrito.cantidad + EXCLUDED.cantidad`,
+       VALUES ($1, $2, $3)`,
       [usuario_id, producto_id, cantidad]
     );
-
-    // Devolver el carrito actualizado
+    // Devuelve el carrito actualizado
     const result = await pool.query(
       `SELECT c.producto_id as id, p.nombre, p.descripcion, p.precio, p.imagen_url as imagen, c.cantidad
        FROM carrito c
