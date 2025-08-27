@@ -24,7 +24,12 @@ export const loginUser = async (req, res) => {
     // Retornar para el frontend
     return res.status(200).json({ 
         usuario_id: user.id, 
-        nombre: user.nombre, 
+        nombre: user.nombre,
+        apellido: user.apellido,
+        email: user.email,
+        telefono: user.telefono,
+        direccion: user.direccion,
+        imagen: user.imagen,
         rol: user.rol, 
         token });
     }catch(e){
