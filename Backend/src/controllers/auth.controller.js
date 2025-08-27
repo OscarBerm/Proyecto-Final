@@ -20,7 +20,7 @@ export const loginUser = async (req, res) => {
             return res.status(400).send("Error, Usuario o Contraseña incorrecta.")            
         }
 
-    const token = jwt.sign({email}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRATION});
+    const token = jwt.sign({ email, rol: user.rol }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION });
     // Retornar para el frontend
     return res.status(200).json({ 
         usuario_id: user.id, 

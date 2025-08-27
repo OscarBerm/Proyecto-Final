@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
       return res.status(400).json({message: 'Token not valid'});
     }
     const decodedToken = jwt.verify(tokenValue, process.env.JWT_SECRET)
-    req.user = decodedToken.email
+    req.user = decodedToken
     next()
   } catch (error) {
     res.status(500).json({ error: error.message })
