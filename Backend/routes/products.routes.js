@@ -15,8 +15,8 @@ import { validateProductData } from '../middleware/productMiddleware.js'
 const router = Router()
 
 router.get("/products/", allProducts)
-router.get("/products/:id", productById)
 router.get("/products/admin", allProductsAdmin);
+router.get("/products/:id", productById)
 router.post("/products/", verifyToken, isAdmin, validateProductData, registerProduct)
 router.put("/products/:id", verifyToken, isAdmin, updatingProducto)
 router.delete("/products/:id", verifyToken, isAdmin, deletingProducto)
