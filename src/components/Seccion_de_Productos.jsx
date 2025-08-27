@@ -5,13 +5,16 @@ import '../styles/Modal.css'
 import { URL_BASE } from '../data/constants';
 import Loading from "./Loading";
 
+
 const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSeleccionada, nombreCategoriaSeleccionada }) => {
 
 	const API_URL = `${URL_BASE}/products`;
+const CARRITO_URL = `${URL_BASE}/api/carrito`;
 
 	const [productos, setProductos] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [selectProduct, setSelectProduct] = useState(null);
+	const [mensaje, setMensaje] = useState("");
 
 	const navigate = useNavigate();
 
@@ -21,6 +24,23 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 
 	const closeModal = () => {
 		setSelectProduct(null);
+	};
+
+	// Función para añadir producto al carrito
+	const agregarAlCarrito = async (producto) => {
+		try {
+			const res = await fetch(CARRITO_URL, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ productoId: producto.id, cantidad: 1 })
+			});
+			if (!res.ok) throw new Error("No se pudo añadir al carrito");
+			setMensaje("Producto añadido al carrito");
+			setTimeout(() => setMensaje(""), 2000);
+		} catch (error) {
+			setMensaje("Error al añadir al carrito");
+			setTimeout(() => setMensaje(""), 2000);
+		}
 	};
 	
 	useEffect(() => {
@@ -51,6 +71,8 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 			: "Todos los productos"}
 		</h2>
 
+		{mensaje && <div className="mensaje-carrito">{mensaje}</div>}
+
 		{loading ? (
 			<Loading />
 		) : (
@@ -68,7 +90,7 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 					<h3 className="producto-nombre">{prod.nombre}</h3>
 					<p className="producto-desc">{prod.descripcion}</p>
 					<span className="producto-precio">${parseFloat(prod.precio).toLocaleString('es-CL')}</span>
-					<button className="producto-btn">Añadir</button>
+					<button className="producto-btn" onClick={() => agregarAlCarrito(prod)}>Añadir</button>
 					{/* <button className="producto-btn" 
 					onClick={() => {navigate(`/products/${prod.id}`);}}>
 					Editar</button> */}
@@ -92,7 +114,7 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 						<h2>{selectProduct.nombre}</h2>
 						<p>{selectProduct.descripcion}</p>
 						<p>Precio:<strong>${parseFloat(selectProduct.precio).toLocaleString('es-CL')}</strong></p>
-						<button className="producto-btn">Añadir</button>
+						<button className="producto-btn" onClick={() => agregarAlCarrito(selectProduct)}>Añadir</button>
 					</div>
 				</div>
 			</div>
