@@ -75,11 +75,11 @@ const Profile = () => {
                 <div className="row mb-2">
                   <div className="col">
                     <strong>Nombre:</strong>
-                    <p className="mb-0">{user.name || "XXXXXXXX"}</p>
+                    <p className="mb-0">{user.nombre || "XXXXXXXX"}</p>
                   </div>
                   <div className="col">
                     <strong>Apellido:</strong>
-                    <p className="mb-0">{user.lastName || "XXXXXXXX"}</p>
+                    <p className="mb-0">{user.apellido || "XXXXXXXX"}</p>
                   </div>
                 </div>
                 <div className="row mb-2">
@@ -89,13 +89,13 @@ const Profile = () => {
                   </div>
                   <div className="col">
                     <strong>Teléfono:</strong>
-                    <p className="mb-0">{user.phone || "0000-0000-0000"}</p>
+                    <p className="mb-0">{user.telefono || "0000-0000-0000"}</p>
                   </div>
                 </div>
                 <div className="mb-3">
                   <strong>Dirección:</strong>
                   <p className="mb-0">
-                    {user.address || "XXXXXXXX xx XXXXXX 000, XXXXX."}
+                    {user.direccion || "XXXXXXXX xx XXXXXX 000, XXXXX."}
                   </p>
                 </div>
                 <div className="mt-4">

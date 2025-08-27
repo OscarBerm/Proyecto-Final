@@ -7,27 +7,30 @@ import { URL_BASE } from '../data/constants';
 export const UserContext = createContext()
 
 export const UserContextProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({
+      usuario_id:'', 
+      nombre: '',
+      apellido: '',
+      email: '',
+      telefono: '',
+      direccion: ''
+    });
     const [token, setToken] = useState(localStorage.getItem('token') || null)
     const HOST = URL_BASE;
 
 
-    console.log('UserProvider token:', token)
-
-    useEffect(() => {
-      const fetchUser = async () => {
-        if (token) {
-          try {
-            const profile = await getProfile()
-            setUser(profile)
-          } catch (error) {
-            console.error('Error al cargar el perfil al inicio:', error)
-          }
-        }
-      }
-      fetchUser()
-    }, [])
-
+    //console.log('UserProvider token:', token)
+  
+    const clearUser = () => {
+      setUser({
+      usuario_id:'', 
+      nombre: '',
+      apellido: '',
+      email: '',
+      telefono: '',
+      direccion: ''
+    });
+    }
 
   const registrarUsuario = async (nombre,apellido,email,password,direccion,telefono) => {
      try {
@@ -47,11 +50,11 @@ export const UserContextProvider = ({ children }) => {
      const URL = HOST+"/login";
      const datos = {email,password}
        const response = await axios.post(URL,datos );
-       console.log(response)
-       setUser(response.data.usuario_id);
+       console.log(response.data)
+       setUser(response.data);
        setToken(response.data.token)
-        Swal.fire('Exito', 'Sesión iniciada exitosamente','success');
-          if (onSuccess) onSuccess();
+       Swal.fire('Exito', 'Sesión iniciada exitosamente','success');
+       if (onSuccess) onSuccess();
      } catch (error) {
        Swal.fire("error","Usuario o Contraseña incorrectos","error");
        return;
@@ -64,34 +67,17 @@ export const UserContextProvider = ({ children }) => {
 
 
   const logout = () => {
-    setUser(null)
+    clearUser();
     setToken(null)
     localStorage.removeItem('token')
     console.log('Se cerro la sesion')
   }
 
-  const getProfile = async () => {
-    try {
-      const response = await axios.get(`${HOST}/api/auth/me`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      setUser(response.data)
-      return response.data
-    } catch (error) {
-      console.error('No se pudo conseguir profile:', error)
-      // Lanza el error para que el useEffect lo capture
-      throw error
-    }
-  }
-
-  const stateGlobal = {
+    const stateGlobal = {
     user,
     logout,
     login,
     registrarUsuario,
-    getProfile,
     token
   }
 
