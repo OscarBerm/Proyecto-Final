@@ -29,9 +29,7 @@ function App() {
           <Route path="/checkout" element={<FormularioDePago />} />
           <Route path="/gracias" element={<GraciasPorTuCompra />} />
           <Route path='/Profile' element={<Profile />} /> 
-          {user?.rol === "admin" && (
-            <Route path="/products/:id" element={<EditProduct />} />
-          )}
+          <Route path="/products/:id" element={<EditProduct />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
     </BrowserRouter>

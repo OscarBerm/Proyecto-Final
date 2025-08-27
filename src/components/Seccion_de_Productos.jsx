@@ -14,10 +14,6 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 	const [selectProduct, setSelectProduct] = useState(null);
 
 	const navigate = useNavigate();
-	
-	const Edit = () => {
-		navigate(`/admin/product/${prod.id}`);
-	};
 
 	const openModal = (product) => {
 		setSelectProduct(product);
@@ -73,9 +69,9 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 					<p className="producto-desc">{prod.descripcion}</p>
 					<span className="producto-precio">${parseFloat(prod.precio).toLocaleString('es-CL')}</span>
 					<button className="producto-btn">Añadir</button>
-					<button className="producto-btn" 
+					{/* <button className="producto-btn" 
 					onClick={() => {navigate(`/products/${prod.id}`);}}>
-					Editar</button>
+					Editar</button> */}
 				</div>
 				))}
 			</div>
