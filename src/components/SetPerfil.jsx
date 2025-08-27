@@ -155,6 +155,7 @@ const SetPerfil = () => {
                                     </div>
                                     <div className="mt-4">
                                         <button className="btn btn-dark me-2" disabled >Guardar</button>
+                                        <button className="btn btn-dark me-2" onClick={() => {navigate("/Profile")}} >volver</button>
                                     </div>
                                 </div>
                             </div>
