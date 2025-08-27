@@ -4,7 +4,7 @@ import 'dotenv/config'
 import './db/config.js'
 import userRoute from './routes/user.routes.js'
 import productsRoute from './routes/products.routes.js'
-
+import carritoRoute from './routes/carrito.routes.js'
 const PORT = process.env.PORT ?? 3000
 
 const app = express()
@@ -22,8 +22,10 @@ app.use(
 
 
 app.use(express.json())
+
 app.use(productsRoute)
 app.use(userRoute);
+app.use(carritoRoute);
 
 
 app.listen(PORT, console.log(`Server on http://localhost:${PORT}`))
