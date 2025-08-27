@@ -29,7 +29,7 @@ export const loginUser = async (req, res) => {
         email: user.email,
         telefono: user.telefono,
         direccion: user.direccion,
-        imagen: user.imagen,
+        imagen: user.imagen_url,
         rol: user.rol, 
         token });
     }catch(e){
