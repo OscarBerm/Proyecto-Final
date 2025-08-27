@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from '../context/UserContext'; 
 import { Link, useNavigate } from "react-router-dom";
 import '../styles/Seccion_de_Productos.css';
 import '../styles/Modal.css'
@@ -9,7 +10,8 @@ import Loading from "./Loading";
 const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSeleccionada, nombreCategoriaSeleccionada }) => {
 
 	const API_URL = `${URL_BASE}/products`;
-	const CARRITO_URL = `${URL_BASE}/carrito`;
+	const { user } = useContext(UserContext);
+	
 
 	const [productos, setProductos] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -46,18 +48,29 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 	useEffect(() => {
 		const fetchProductos = async () => {
 			try {
-			const response = await fetch(API_URL);
+			const URL = user?.rol === "admin"
+			? `${API_URL}/admin`
+			: API_URL;   
+			const response = await fetch(URL);
+
+			if (!response.ok) {
+			throw new Error(`Error al obtener productos: ${response.status}`);
+			}
+
 			const data = await response.json();
+
+			if (!data.product || !Array.isArray(data.product)) {
+			throw new Error('La respuesta no contiene productos válidos');
+			}
 			setProductos(data.product); 
 			} catch (error) {
 			console.error("Error al cargar los productos:", error);
 			} finally {
 			setLoading(false);
 			}
-		};
-
+		};	
 		fetchProductos();
-	}, []);
+		}, [user]); 
 
 	const productosFiltrados = categoriaSeleccionada
 		? productos.filter(prod => prod.categoria_id === categoriaSeleccionada)
@@ -90,10 +103,19 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 					<h3 className="producto-nombre">{prod.nombre}</h3>
 					<p className="producto-desc">{prod.descripcion}</p>
 					<span className="producto-precio">${parseFloat(prod.precio).toLocaleString('es-CL')}</span>
-					<button className="producto-btn" onClick={() => agregarAlCarrito(prod)}>Añadir</button>
-					{/* <button className="producto-btn" 
-					onClick={() => {navigate(`/products/${prod.id}`);}}>
-					Editar</button> */}
+					{user?.rol !== "admin" && (
+						<button className="producto-btn">Añadir</button>
+					)}
+					{user?.rol === "admin" && (
+						<>
+							<p className="producto-desc">Categoria: {prod.categoria_nombre}</p>
+							<p className="producto-desc">Stock:{prod.stock}</p>
+							<p className="producto-desc">Activo: {prod.activo ? "Sí" : "No"}</p>
+							<button className="producto-btn" 
+							onClick={() => {navigate(`/products/${prod.id}`);}}>
+							Editar</button>
+						</>
+					)}
 				</div>
 				))}
 			</div>
