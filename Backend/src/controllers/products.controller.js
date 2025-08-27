@@ -83,6 +83,6 @@ export const allCategory = async (req, res) => {
     const category = await getAllCategory();
     res.json(category);
   } catch (err) {
-    res.status(500).json({ error: 'Error getting category', detalle: err.messag });
+  res.status(500).json({ error: 'Error getting category', detalle: err.message });
   }
 };
