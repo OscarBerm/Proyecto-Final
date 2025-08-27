@@ -1,10 +1,15 @@
+
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from '../context/UserContext'; 
 import { Link, useNavigate } from "react-router-dom";
 import '../styles/Seccion_de_Productos.css';
 import '../styles/Modal.css'
 import { URL_BASE } from '../data/constants';
+import Swal from 'sweetalert2';
 import Loading from "./Loading";
+
+// Ruta del carrito
+const CARRITO_URL = `${URL_BASE}/carrito`;
 
 
 const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSeleccionada, nombreCategoriaSeleccionada }) => {
@@ -30,18 +35,30 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 
 	// Función para añadir producto al carrito
 	const agregarAlCarrito = async (producto) => {
+		const datos = { 
+			usuario_id: user.usuario_id, 
+			producto_id: producto.id, 
+			cantidad: 1 
+		};
 		try {
 			const res = await fetch(CARRITO_URL, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ productoId: producto.id, cantidad: 1 })
+				body: JSON.stringify(datos)
 			});
 			if (!res.ok) throw new Error("No se pudo añadir al carrito");
-			setMensaje("Producto añadido al carrito");
-			setTimeout(() => setMensaje(""), 2000);
+			Swal.fire({
+				icon: 'success',
+				title: '¡Producto añadido al carrito!',
+				showConfirmButton: false,
+				timer: 1200
+			});
 		} catch (error) {
-			setMensaje("Error al añadir al carrito");
-			setTimeout(() => setMensaje(""), 2000);
+			Swal.fire({
+				icon: 'error',
+				title: 'Error al añadir al carrito',
+				text: error.message || ''
+			});
 		}
 	};
 	
@@ -103,9 +120,9 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 					<h3 className="producto-nombre">{prod.nombre}</h3>
 					<p className="producto-desc">{prod.descripcion}</p>
 					<span className="producto-precio">${parseFloat(prod.precio).toLocaleString('es-CL')}</span>
-					{user?.rol !== "admin" && (
-						<button className="producto-btn">Añadir</button>
-					)}
+					   {user?.rol !== "admin" && (
+						   <button className="producto-btn" onClick={() => agregarAlCarrito(prod)}>Añadir</button>
+					   )}
 					{user?.rol === "admin" && (
 						<>
 							<p className="producto-desc">Categoria: {prod.categoria_nombre}</p>

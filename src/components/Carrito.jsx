@@ -1,7 +1,8 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import { UserContext } from '../context/UserContext';
 import '../styles/Carrito.css';
 
 // El carrito ahora se carga desde el backend
@@ -10,22 +11,24 @@ import '../styles/Carrito.css';
 const Carrito = () => {
 	const [productosCarrito, setProductosCarrito] = useState([]);
 	const navigate = useNavigate();
+	const { user } = useContext(UserContext);
 
 	// Cargar carrito desde backend al montar
 	useEffect(() => {
-		fetch('http://localhost:3000/api/carrito')
+		if (!user?.usuario_id) return;
+		fetch(`https://proyecto-final-pv5g.onrender.com/carrito?usuario_id=${user.usuario_id}`)
 			.then(res => res.json())
 			.then(data => setProductosCarrito(data));
-	}, []);
+	}, [user]);
 
 	// Aumentar cantidad
 	const aumentarCantidad = (id) => {
 		const prod = productosCarrito.find(p => p.id === id);
 		if (prod) {
-			fetch(`http://localhost:3000/api/carrito/${id}`, {
+			fetch(`https://proyecto-final-pv5g.onrender.com/carrito/${id}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ cantidad: prod.cantidad + 1 })
+				body: JSON.stringify({ usuario_id: user.usuario_id, cantidad: prod.cantidad + 1 })
 			})
 				.then(res => res.json())
 				.then(data => setProductosCarrito(data));
@@ -36,10 +39,10 @@ const Carrito = () => {
 	const disminuirCantidad = (id) => {
 		const prod = productosCarrito.find(p => p.id === id);
 		if (prod && prod.cantidad > 1) {
-			fetch(`http://localhost:3000/api/carrito/${id}`, {
+			fetch(`https://proyecto-final-pv5g.onrender.com/carrito/${id}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ cantidad: prod.cantidad - 1 })
+				body: JSON.stringify({ usuario_id: user.usuario_id, cantidad: prod.cantidad - 1 })
 			})
 				.then(res => res.json())
 				.then(data => setProductosCarrito(data));
@@ -48,23 +51,27 @@ const Carrito = () => {
 
 	// Eliminar producto
 	const eliminarProducto = (id) => {
-		fetch(`http://localhost:3000/api/carrito/${id}`, {
-			method: 'DELETE'
+		fetch(`https://proyecto-final-pv5g.onrender.com/carrito/${id}`, {
+			method: 'DELETE',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ usuario_id: user.usuario_id })
 		})
 			.then(res => res.json())
 			.then(data => setProductosCarrito(data));
 	};
 
-	const total = productosCarrito.reduce((acc, prod) => acc + prod.precio * prod.cantidad, 0);
+	const total = Array.isArray(productosCarrito)
+	  ? productosCarrito.reduce((acc, prod) => acc + prod.precio * prod.cantidad, 0)
+	  : 0;
 
 	return (
 		<>
 			<Navbar />
 			<aside className="carrito-cafe">
 				<h2 className="carrito-titulo"><i className="bi bi-cart4"></i> Mi Carrito</h2>
-				<ul className="carrito-lista">
-					{productosCarrito.map((prod) => (
-						<li className="carrito-item" key={prod.id}>
+							<ul className="carrito-lista">
+								{Array.isArray(productosCarrito) && productosCarrito.map((prod) => (
+									<li className="carrito-item" key={prod.id}>
 							<img src={prod.imagen} alt={prod.nombre} className="carrito-img" />
 							<div className="carrito-info">
 								<span className="carrito-nombre">{prod.nombre}</span>
