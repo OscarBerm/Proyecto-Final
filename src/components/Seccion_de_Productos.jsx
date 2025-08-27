@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from '../context/UserContext'; 
 import { Link, useNavigate } from "react-router-dom";
@@ -5,6 +6,9 @@ import '../styles/Seccion_de_Productos.css';
 import '../styles/Modal.css'
 import { URL_BASE } from '../data/constants';
 import Loading from "./Loading";
+
+// Ruta del carrito
+const CARRITO_URL = `${URL_BASE}/carrito`;
 
 
 const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSeleccionada, nombreCategoriaSeleccionada }) => {
@@ -103,9 +107,9 @@ const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSelecciona
 					<h3 className="producto-nombre">{prod.nombre}</h3>
 					<p className="producto-desc">{prod.descripcion}</p>
 					<span className="producto-precio">${parseFloat(prod.precio).toLocaleString('es-CL')}</span>
-					{user?.rol !== "admin" && (
-						<button className="producto-btn">Añadir</button>
-					)}
+					   {user?.rol !== "admin" && (
+						   <button className="producto-btn" onClick={() => agregarAlCarrito(prod)}>Añadir</button>
+					   )}
 					{user?.rol === "admin" && (
 						<>
 							<p className="producto-desc">Categoria: {prod.categoria_nombre}</p>
