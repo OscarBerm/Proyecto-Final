@@ -10,7 +10,7 @@ import {
 } from "../src/controllers/products.controller.js";
 import { verifyToken } from '../middleware/verifyToken.js'
 import { isAdmin } from '../middleware/isAdmin.js'
-import { validateProductData } from '../middleware/productsMiddleware.js'
+import { validateProductData } from '../middleware/productMiddleware.js'
 
 const router = Router()
 
