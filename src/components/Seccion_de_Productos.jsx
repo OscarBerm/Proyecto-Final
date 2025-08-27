@@ -9,7 +9,7 @@ import Loading from "./Loading";
 const Seccion_de_Productos = ({ cant, mostrarVerMas = false, categoriaSeleccionada, nombreCategoriaSeleccionada }) => {
 
 	const API_URL = `${URL_BASE}/products`;
-const CARRITO_URL = `${URL_BASE}/api/carrito`;
+	const CARRITO_URL = `${URL_BASE}/carrito`;
 
 	const [productos, setProductos] = useState([]);
 	const [loading, setLoading] = useState(true);
