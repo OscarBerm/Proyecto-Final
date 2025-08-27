@@ -23,7 +23,10 @@ export const getAllProductsAdmin = async ({ order_by = 'fecha_creacion-ASC', lim
   const sqlQuery = format(
     `SELECT productos.*, categorias.nombre AS categoria_nombre
       FROM productos
-      JOIN categorias ON productos.categoria_id = categorias.id`,
+      JOIN categorias ON productos.categoria_id = categorias.id
+      ORDER BY %I %s
+      LIMIT %L
+      OFFSET %L`,
     attribute,
     order,
     limit,
