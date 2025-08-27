@@ -2,29 +2,6 @@ import { createUserModel, getUserByEmailModel } from "../models/users.model.js"
 import { isValidEmail } from "../helpers/helpers.js"
 import bcrypt from "bcryptjs"
 
-export const getProfile = async (req, res) => {
-    try {
-        const { email } = req.user
-
-        if (!email) {
-            return res.status(401).json({ error: "Token inválido o falta el email del usuario." })
-        }
-
-        const user = await getUserByEmailModel(email);
-
-        if (!user) {
-            return res.status(404).json({ error: "Usuario no encontrado." })
-        }
-        
-        const { password, ...userData } = user;
-        
-        res.status(200).json(userData);
-    } catch (error) {
-        console.error("Error al obtener el perfil del usuario:", error);
-        res.status(500).json({ error: "Error interno del servidor al obtener el perfil." })
-    }
-}
-
 export const registrarUsuario = async (req, res) => {
   const { nombre, apellido, email, password, direccion, telefono } =
     req.body || {};
