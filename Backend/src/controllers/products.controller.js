@@ -5,6 +5,7 @@ import {
   updateProduct,
   deleteProduct,
   getAllCategory,
+  getAllProductsAdmin
 } from "../models/products.model.js";
 import { v4 as uuidv4 } from 'uuid'
 
@@ -12,6 +13,16 @@ export const allProducts = async (req, res) => {
   try {
     const { order_by, limit, page } = req.query
     const result = await getAllProducts({ order_by, limit, page });
+    res.status(200).json({ product: result });
+  } catch (err) {
+    res.status(500).json({ error: "Error  getting product", detalle: err.message });
+  }
+};
+
+export const allProductsAdmin = async (req, res) => {
+  try {
+    const { order_by, limit, page } = req.query
+    const result = await getAllProductsAdmin({ order_by, limit, page });
     res.status(200).json({ product: result });
   } catch (err) {
     res.status(500).json({ error: "Error  getting product", detalle: err.message });

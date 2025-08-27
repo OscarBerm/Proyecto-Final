@@ -17,6 +17,22 @@ export const getAllProducts = async ({ order_by = 'fecha_creacion-ASC', limit = 
   return res.rows
 };
 
+export const getAllProductsAdmin = async ({ order_by = 'fecha_creacion-ASC', limit = 50,  page = 1 }) => {
+  const [attribute, order] = order_by.split('-')
+  const offset = (page - 1) * limit
+  const sqlQuery = format(
+    `SELECT productos.*, categorias.nombre AS categoria_nombre
+      FROM productos
+      JOIN categorias ON productos.categoria_id = categorias.id`,
+    attribute,
+    order,
+    limit,
+    offset
+  )
+  const res = await pool.query(sqlQuery)
+  return res.rows
+};
+
 export const getProductById = async (id) => {
   const sqlQuery = format(
     'SELECT * FROM productos WHERE id = %L',

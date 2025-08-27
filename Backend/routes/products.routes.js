@@ -6,6 +6,7 @@ import {
   updatingProducto,
   deletingProducto,
   allCategory,
+  allProductsAdmin,
 } from "../src/controllers/products.controller.js";
 import { verifyToken } from '../middleware/authMiddleware.js'
 import { isAdmin } from '../middleware/isAdmin.js'
@@ -15,6 +16,7 @@ const router = Router()
 
 router.get("/products/", allProducts)
 router.get("/products/:id", productById)
+router.get("/products/admin", allProductsAdmin);
 router.post("/products/", verifyToken, isAdmin, validateProductData, registerProduct)
 router.put("/products/:id", verifyToken, isAdmin, updatingProducto)
 router.delete("/products/:id", verifyToken, isAdmin, deletingProducto)

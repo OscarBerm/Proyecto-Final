@@ -21,8 +21,12 @@ export const loginUser = async (req, res) => {
         }
 
     const token = jwt.sign({email}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRATION});
-    // Retornar usuario_id y token para el frontend
-    return res.status(200).json({ usuario_id: user.id, token });
+    // Retornar para el frontend
+    return res.status(200).json({ 
+        usuario_id: user.id, 
+        nombre: user.nombre, 
+        rol: user.rol, 
+        token });
     }catch(e){
         return res.status(500).json({Error: e.Error, Mensaje: e.message})
     }
