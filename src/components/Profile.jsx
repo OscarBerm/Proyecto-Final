@@ -65,7 +65,7 @@ const Profile = () => {
                 >
                   {/* Aquí iría la imagen de perfil del usuario */}
                   <img
-                    src={user.imagen || "/public/img/usuario/default_perfil.png"}
+                    src={user.imagen || "/img/usuario/default_perfil.png"}
                     alt="Imagen de perfil"
                     className="img-fluid"
                   />
