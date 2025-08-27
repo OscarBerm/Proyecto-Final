@@ -4,6 +4,7 @@ import { UserContext } from "../context/UserContext";
 import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
 
+
 const Profile = () => {
   const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
@@ -70,9 +71,6 @@ const Profile = () => {
                     className="img-fluid"
                   />
                 </div>
-                <button className="btn btn-dark w-75 mb-3">
-                  Añadir imagen
-                </button>
               </div>
 
               <div className="col-md-6">
@@ -103,7 +101,7 @@ const Profile = () => {
                   </p>
                 </div>
                 <div className="mt-4">
-                  <button className="btn btn-dark me-2">Editar</button>
+                  <button className="btn btn-dark me-2" onClick={() => navigate("/setPerfil")}>Editar</button>
                   <button className="btn btn-danger" onClick={handleLogout}>
                     Cerrar sesión
                   </button>

@@ -12,6 +12,7 @@ import Carrito from "./components/Carrito";
 import FormularioDePago from "./components/Formulario_de_Pago";
 import GraciasPorTuCompra from "./pages/GraciasPorTuCompra";
 import EditProduct from "./pages/EditProduct";
+import SetPerfil from "./components/SetPerfil";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/checkout" element={<FormularioDePago />} />
           <Route path="/gracias" element={<GraciasPorTuCompra />} />
           <Route path='/Profile' element={<Profile />} /> 
+          <Route path='/setPerfil' element={<SetPerfil />}/>
           {user?.rol === "admin" && (
           <Route path="/products/:id" element={<EditProduct />} />
           )}

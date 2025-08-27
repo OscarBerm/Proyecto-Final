@@ -7,36 +7,20 @@ import { URL_BASE } from '../data/constants';
 export const UserContext = createContext()
 
 export const UserContextProvider = ({ children }) => {
-    const [user, setUser] = useState({
-      usuario_id:'', 
-      nombre: '',
-      apellido: '',
-      email: '',
-      telefono: '',
-      direccion: '',
-      imagen: ''
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem('user');
+        return storedUser ? JSON.parse(storedUser) : null;
     });
     const [token, setToken] = useState(localStorage.getItem('token') || null)
     const HOST = URL_BASE;
 
 
     //console.log('UserProvider token:', token)
-  
-    const clearUser = () => {
-      setUser({
-      usuario_id:'', 
-      nombre: '',
-      apellido: '',
-      email: '',
-      telefono: '',
-      direccion: ''
-    });
-    }
 
   const registrarUsuario = async (nombre,apellido,email,password,direccion,telefono) => {
      try {
      const URL = HOST+"/register";
-     const datos = {nombre,apellido,email,password,direccion,telefono, imagen: '/img/usuario/default_perfil.png'}
+     const datos = {nombre,apellido,email,password,direccion,telefono}
        const response = await axios.post(URL,datos );
        setUser(response.data);
        Swal.fire('Exito', 'Usuarios registrado exitosamente','success');
@@ -62,16 +46,30 @@ export const UserContextProvider = ({ children }) => {
      }
   }
 
+  const modificarUsuario = async (nombre,apellido,email,telefono,direccion) => {
+     try {
+     const URL = HOST+"/users/"+user.id;
+     const datos = {nombre,apellido,email,telefono,direccion}
+       const response = await axios.put(URL,datos );
+       setUser(response.data);
+       Swal.fire('Exito', 'Usuario modificado exitosamente','success');
+     } catch (error) {
+       Swal.fire('Error', 'Error al modificar el usuario', 'error')
+       return;
+     }
+  };
+
   useEffect(() => {
     token ? localStorage.setItem('token', token) : localStorage.removeItem('token')
-  }, [token])
+    user ? localStorage.setItem('user', JSON.stringify(user)) : localStorage.removeItem('user')
+  }, [token, user])
 
 
   const logout = () => {
-    clearUser();
+    setUser(null);
     setToken(null)
     localStorage.removeItem('token')
-    console.log('Se cerro la sesion')
+    Swal.fire('Exito','Se cerro la sesion', 'success')
   }
 
     const stateGlobal = {
@@ -79,6 +77,7 @@ export const UserContextProvider = ({ children }) => {
     logout,
     login,
     registrarUsuario,
+    modificarUsuario,
     token
   }
 
