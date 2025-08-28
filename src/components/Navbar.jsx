@@ -42,9 +42,9 @@ const handleLogout = () => {
           <li>
             <Link to="/products">Nuestros Productos</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/contacto">Contáctanos</Link>
-          </li>
+          </li> */}
           {user?.rol === "admin" && (
             <li>
               <Link to="/ProductRegister">Agregar Producto</Link>

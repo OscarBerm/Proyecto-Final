@@ -13,7 +13,7 @@ const Footer = () => {
 				<ul className="footer-links">
 					  <li><Link to="/">Inicio</Link></li>
 					  <li><Link to="/products">Nuestros Productos</Link></li>
-					  <li><Link to="/contacto">Contáctanos</Link></li>
+					  {/* <li><Link to="/contacto">Contáctanos</Link></li> */}
 				</ul>
 				<div className="footer-social">
 					<a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-icon"><i className="bi bi-facebook"></i></a>
