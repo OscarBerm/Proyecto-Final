@@ -25,6 +25,8 @@ export const UserContextProvider = ({ children }) => {
        setUser(response.data);
        Swal.fire('Exito', 'Usuarios registrado exitosamente','success');
      } catch (error) {
+      console.log(error);
+      console.log(nombre,apellido,email,password,direccion,telefono)
        Swal.fire('Error', 'Error al registrar al usuario', 'error')
        return;
      }
