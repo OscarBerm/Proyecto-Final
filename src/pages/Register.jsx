@@ -49,7 +49,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (error.campo) {
+    if (error.campos) {
       Swal.fire("Alerta", "Debe llenar todos los campos", "error");
       return;
     }
